@@ -1,0 +1,35 @@
+{
+    "application": {
+        "id": "",
+        "title": "thd.recmobile.ydsdrecmobile",
+        "description": "Receive Shipment",
+        "type": "SAP_UI5_Component",
+        "componentUrl": "/webapp",
+        "appUrl": "#ydsdrecmobile-Display",
+        "navigationComponentName": "thd.recmobile",
+        "intentSemanticObject": "ydsdrecmobile",
+        "intentAction": "Display",
+        "html5ApplicationName": "ydsdrecmobile",
+        "HCPParentApplicationName": ""
+    },
+    "assignment": {
+        "groups": [
+            "0e72663a-7d2f-49db-80ea-336c46e9c327-1461611958647"
+        ],
+        "contentPackages": [
+            "53a5f78d-5abb-4602-9a01-ecac3aa4f03d-1461611928164"
+        ],
+        "categories": []
+    },
+    "tile": {
+        "type": "StaticTile",
+        "title": "Receive Shipments",
+        "subtitle": "Check-In Shipments and Receive by Pallet or PO.",
+        "searchKeywords": "Receive Shipments,Check-In Shipments and Receive by Pallet or PO.",
+        "displayIconUrl": "sap-icon://shipping-status",
+        "displayInfoText": "",
+        "size": "1x1",
+        "serviceURL": "",
+        "refreshInterval": ""
+    }
+}

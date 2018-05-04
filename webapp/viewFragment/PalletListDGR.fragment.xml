@@ -1,0 +1,117 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout"
+	xmlns="sap.m" >
+	<VBox
+		id="idWaybillPagePalletDGR" >
+
+		<!-- Pallet List Toolbar -->
+		<Toolbar
+			id="idWaybillPagePalletDGRToolbar"
+			width="100%"
+			design="Solid" >
+			<content>
+				<Button
+					icon="sap-icon://add"
+					press="onClickAddPallet" >
+					<customData>
+						<core:CustomData
+							key="WayBillDetail_BtnAddPallet"
+							value="'StoreID':'{StoreID}','WayBillNbr':'{WayBillNbr}','PalletID':''"
+							writeToDom="true" />
+					</customData>
+				</Button>
+				<SearchField
+					width="100%"
+					placeholder="{i18n>Pallet_PlaceholderSearch}"
+					search="onFilter" />
+				<Button
+					icon="sap-icon://bar-code"
+					visible="{= ${appView>/settings/hasCameraScanner} ? true : false }"
+					press="onCameraScanner" />
+			</content>
+		</Toolbar>
+
+		<!-- List of Un-Received Pallets -->
+		<ScrollContainer
+			id="idWaybillPagePalletDGRScroller"
+			vertical="true" >
+			<List
+				id="idWaybillPagePalletDGRList"
+				mode="SingleSelectMaster"
+				inset="false"
+				updateFinished="onListUpdate"
+				selectionChange="onSelect"
+				visible="{= ${waybillView>/data/Waybill/Seal} === 'X' ? true : false }"
+				items="{
+					path: 'waybillView>/data/DGRPallets/',
+					templateShareable : false,
+					sorter: [{
+						path: 'PalletID',
+						descending: false,
+						group: false
+					}]
+				}" >
+				<items>
+					<CustomListItem 
+						busyIndicatorDelay="0"
+						busy="{waybillView>isBusy}" >
+						<customData>
+							<core:CustomData
+								key="WayBillDetail_Pallet"
+								value="'StoreID':'{waybillView>StoreID}','WayBillNbr':'{waybillView>WayBillNbr}','Seal':'{waybillView>/data/Waybill/Seal}','PalletID':'{waybillView>PalletID}','PONbr':'{waybillView>PONbr}'"
+								writeToDom="true" />
+						</customData>
+						<content>
+							<FlexBox 
+								justifyContent="SpaceBetween"
+								alignItems="Center"
+								wrap="Wrap">
+								<items>
+									<Button
+										type="{= ${waybillView>PalletStatus} === 'R' ? 'Reject' : ${waybillView>PalletStatus} === 'X' ? 'Accept' : 'Transparent'}"
+										icon="{= ${waybillView>PalletStatus} === 'X' ? 'sap-icon://sys-enter-2' : ${waybillView>PalletStatus} === 'N' ? 'sap-icon://sys-minus' : 'sap-icon://message-warning' }"
+										enabled="{= ${waybillView>PalletStatus} === 'R' || ${waybillView>PalletStatus} === 'X' ? false : true}"
+										press="onSelectPallet" >
+										<layoutData>
+											<FlexItemData alignSelf="Start" />
+											<FlexItemData growFactor="1" />
+										</layoutData>
+									</Button>
+									<Title
+										width="{
+											path : 'waybillView>PalletID',
+											formatter : '.formatWidthPalletNbr'
+										}"
+										level="{
+											path : 'waybillView>PalletID',
+											formatter : '.formatLevelPalletNbr'
+										}"
+										text="{
+											path : 'waybillView>PalletID',
+											formatter : '.formatter.removeLeadingZeros'
+										}" >
+										<layoutData>
+											<FlexItemData alignSelf="Start" />
+											<FlexItemData growFactor="2" />
+										</layoutData>
+									</Title>
+									<VBox>
+										<layoutData>
+											<FlexItemData alignSelf="End" />
+											<FlexItemData growFactor="5" />
+										</layoutData>
+										<Label
+											text="{waybillView>POCount} {i18n>Pallet_PoCountLabel}" />
+										<Label
+											text="{waybillView>ItemCount} {i18n>Pallet_ArticleCountLabel}" />
+									</VBox>
+								</items>
+							</FlexBox>
+						</content>
+					</CustomListItem>
+				</items>
+			</List>
+		</ScrollContainer>
+
+	</VBox>
+</core:FragmentDefinition>

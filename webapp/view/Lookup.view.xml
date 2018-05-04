@@ -1,0 +1,96 @@
+<mvc:View controllerName="thd.recmobile.controller.Lookup"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:layout="sap.ui.layout" >
+
+	<Page
+		id="idLookupPage"
+		navButtonPress="onNavButtonPress"
+		showNavButton="true"
+		title="{i18n>LookupPageTitle}" >
+
+		<headerContent>
+			<Button
+				id="idLookupPageButtonHistoryApp"
+				icon="sap-icon://manager-insight"
+				tooltip="{i18n>LookupPageTooltipHistoryApp}"
+				visible="{= ${device>/system/phone} ? false : true }"
+				press="onHistorysReportPress" />
+		</headerContent>
+
+		<subHeader>
+			<Bar>
+				<contentMiddle>
+					<layout:FixFlex
+						vertical="false" >
+						<layout:fixContent>
+							<Button
+								icon="sap-icon://bar-code"
+								visible="{appView>/settings/hasCameraScanner}"
+								press="onCameraScanner" />
+						</layout:fixContent>
+						<layout:flexContent>
+							<SearchField
+								tooltip="{i18n>LookupPageToolTipSearchterm}"
+								placeholder="{i18n>LookupPagePlacehoderSearchTerm}"
+								width="100%"
+								search="onSearchButtonPress"
+								value="{lookupView>/data/searchTerm}" />
+						</layout:flexContent>
+					</layout:FixFlex>
+				</contentMiddle>
+			</Bar>
+		</subHeader>
+
+		<content>
+<!--
+			<IconTabBar
+				id="idLookupPageTabBar"
+				applyContentPadding="false"
+				stretchContentHeight="true"
+				upperCase="false"
+				expandable="false"
+				expanded="true"
+				select="onSelectTabBar" >
+				<items>
+					<IconTabFilter
+						text="{i18n>LookupPageTab_Inbound}"
+						key="Inbound"
+						icon="sap-icon://shipping-status"
+						iconColor="Default" >
+						<content>
+							<core:Fragment 
+								type="XML"
+								fragmentName="thd.recmobile.viewFragment.WaybillInboundList" />
+						</content>
+					</IconTabFilter>
+					<IconTabFilter
+						text="{i18n>LookupPageTab_Penbding}"
+						key="Pending"
+						icon="sap-icon://instance"
+						iconColor="Critical" >
+						<content>
+							<core:Fragment
+								type="XML"
+								fragmentName="thd.recmobile.viewFragment.WaybillPendingList" />
+						</content>
+					</IconTabFilter>
+					<IconTabFilter
+						text="{i18n>LookupPageTab_Complete}"
+						key="Complete"
+						icon="sap-icon://complete"
+						iconColor="Positive" >
+						<content>
+							<core:Fragment
+								type="XML"
+								fragmentName="thd.recmobile.viewFragment.WaybillCompleteList" />
+						</content>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+-->
+		</content>
+
+	</Page>
+</mvc:View>

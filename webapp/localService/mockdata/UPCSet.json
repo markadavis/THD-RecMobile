@@ -1,0 +1,131 @@
+[{
+	"Article": "Article 1",
+	"PONbr": "PONbr 1",
+	"BaseUnit": "BaseUnit 1",
+	"ItemID": "ItemID 1",
+	"Qty": 9800.97,
+	"Upc": "Upc 1",
+	"StoreID": "StoreID 1",
+	"WayBillNbr": "WayBillNbr 1",
+	"__metadata": {
+		"uri": "UPCSet(PONbr='PONbr%201',ItemID='ItemID%201',StoreID='StoreID%201',WayBillNbr='WayBillNbr%201')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.UPC"
+	}
+}, {
+	"Article": "Article 2",
+	"PONbr": "PONbr 2",
+	"BaseUnit": "BaseUnit 2",
+	"ItemID": "ItemID 2",
+	"Qty": 5717.3,
+	"Upc": "Upc 2",
+	"StoreID": "StoreID 2",
+	"WayBillNbr": "WayBillNbr 2",
+	"__metadata": {
+		"uri": "UPCSet(PONbr='PONbr%202',ItemID='ItemID%202',StoreID='StoreID%202',WayBillNbr='WayBillNbr%202')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.UPC"
+	}
+}, {
+	"Article": "Article 3",
+	"PONbr": "PONbr 3",
+	"BaseUnit": "BaseUnit 3",
+	"ItemID": "ItemID 3",
+	"Qty": 1341.72,
+	"Upc": "Upc 3",
+	"StoreID": "StoreID 3",
+	"WayBillNbr": "WayBillNbr 3",
+	"__metadata": {
+		"uri": "UPCSet(PONbr='PONbr%203',ItemID='ItemID%203',StoreID='StoreID%203',WayBillNbr='WayBillNbr%203')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.UPC"
+	}
+}, {
+	"Article": "Article 4",
+	"PONbr": "PONbr 4",
+	"BaseUnit": "BaseUnit 4",
+	"ItemID": "ItemID 4",
+	"Qty": 4228.66,
+	"Upc": "Upc 4",
+	"StoreID": "StoreID 4",
+	"WayBillNbr": "WayBillNbr 4",
+	"__metadata": {
+		"uri": "UPCSet(PONbr='PONbr%204',ItemID='ItemID%204',StoreID='StoreID%204',WayBillNbr='WayBillNbr%204')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.UPC"
+	}
+}, {
+	"Article": "Article 5",
+	"PONbr": "PONbr 5",
+	"BaseUnit": "BaseUnit 5",
+	"ItemID": "ItemID 5",
+	"Qty": 8160.21,
+	"Upc": "Upc 5",
+	"StoreID": "StoreID 5",
+	"WayBillNbr": "WayBillNbr 5",
+	"__metadata": {
+		"uri": "UPCSet(PONbr='PONbr%205',ItemID='ItemID%205',StoreID='StoreID%205',WayBillNbr='WayBillNbr%205')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.UPC"
+	}
+}, {
+	"Article": "Article 6",
+	"PONbr": "PONbr 6",
+	"BaseUnit": "BaseUnit 6",
+	"ItemID": "ItemID 6",
+	"Qty": 1387.35,
+	"Upc": "Upc 6",
+	"StoreID": "StoreID 6",
+	"WayBillNbr": "WayBillNbr 6",
+	"__metadata": {
+		"uri": "UPCSet(PONbr='PONbr%206',ItemID='ItemID%206',StoreID='StoreID%206',WayBillNbr='WayBillNbr%206')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.UPC"
+	}
+}, {
+	"Article": "Article 7",
+	"PONbr": "PONbr 7",
+	"BaseUnit": "BaseUnit 7",
+	"ItemID": "ItemID 7",
+	"Qty": 6404.29,
+	"Upc": "Upc 7",
+	"StoreID": "StoreID 7",
+	"WayBillNbr": "WayBillNbr 7",
+	"__metadata": {
+		"uri": "UPCSet(PONbr='PONbr%207',ItemID='ItemID%207',StoreID='StoreID%207',WayBillNbr='WayBillNbr%207')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.UPC"
+	}
+}, {
+	"Article": "Article 8",
+	"PONbr": "PONbr 8",
+	"BaseUnit": "BaseUnit 8",
+	"ItemID": "ItemID 8",
+	"Qty": 8086.24,
+	"Upc": "Upc 8",
+	"StoreID": "StoreID 8",
+	"WayBillNbr": "WayBillNbr 8",
+	"__metadata": {
+		"uri": "UPCSet(PONbr='PONbr%208',ItemID='ItemID%208',StoreID='StoreID%208',WayBillNbr='WayBillNbr%208')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.UPC"
+	}
+}, {
+	"Article": "Article 9",
+	"PONbr": "PONbr 9",
+	"BaseUnit": "BaseUnit 9",
+	"ItemID": "ItemID 9",
+	"Qty": 7608.28,
+	"Upc": "Upc 9",
+	"StoreID": "StoreID 9",
+	"WayBillNbr": "WayBillNbr 9",
+	"__metadata": {
+		"uri": "UPCSet(PONbr='PONbr%209',ItemID='ItemID%209',StoreID='StoreID%209',WayBillNbr='WayBillNbr%209')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.UPC"
+	}
+}, {
+	"Article": "Article 10",
+	"PONbr": "PONbr 10",
+	"BaseUnit": "BaseUnit 10",
+	"ItemID": "ItemID 10",
+	"Qty": 4349.08,
+	"Upc": "Upc 10",
+	"StoreID": "StoreID 10",
+	"WayBillNbr": "WayBillNbr 10",
+	"__metadata": {
+		"uri": "UPCSet(PONbr='PONbr%2010',ItemID='ItemID%2010',StoreID='StoreID%2010',WayBillNbr='WayBillNbr%2010')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.UPC"
+	}
+}]

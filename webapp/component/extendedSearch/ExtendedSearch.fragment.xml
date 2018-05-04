@@ -1,0 +1,124 @@
+<core:FragmentDefinition
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:layout="sap.ui.layout" >
+	<Dialog
+		id="idExtendedSearch_Dialog"
+		title="{i18n>ExtendedSearch_Title}"
+		afterClose="afterClose"
+		contentHeight="80%"
+		stretch="{= ${device>/system/phone} ? true : false}"
+		afterOpen="onDialogAfterOpen" >
+		<content>
+
+			<Panel
+				id="idExtendedSearch_DatePanel"
+				headerText="{i18n>ExtendedSearch_PanelTitle}"
+				backgroundDesign="Transparent"
+				expandable="true"
+				expanded="false"
+				expand="onPanelExpand" >
+				<form:SimpleForm
+					id="idExtendedSearch_Form"
+					backgroundDesign="Transparent"
+					editable="true" >
+					<form:content>
+						<Label
+							text="{i18n>ExtendedSearch_BegDateLlb}" />
+						<DatePicker
+							id="idExtendedSearch_BegDate"
+							class="sapUiSmallMarginBottom" />
+						<Label
+							text="{i18n>ExtendedSearch_EndDateLlb}" />
+						<DatePicker
+							id="idExtendedSearch_EndDate"
+							class="sapUiSmallMarginBottom" />
+						<Label
+							text="{i18n>ExtendedSearch_SearchTerm}" />
+						<Input
+							id="idExtendedSearch_SearchTerm" />
+						<Label
+							text="" />
+						<Button
+							id="idExtendedSearch_searchBtn"
+							text="{i18n>ExtendedSearch_searchBtn}"
+							press="onExtendedSearchPressSearch" />
+					</form:content>
+				</form:SimpleForm>
+			</Panel>
+
+			<!-- Start of Scroll Container -->
+			<ScrollContainer
+				id="idExtendedSearch_Scroller"
+				vertical="true" >
+
+				<List
+					id="idExtendedSearch_List"
+					noDataText="{i18n>ExtendedSearch_listNoObjectsFound}"
+					mode="SingleSelectMaster"
+					inset="false"
+					selectionChange="onPress"
+					updateFinished="onListUpdateFinished"
+					items="{
+						path: 'searchResults>/',
+						sorter: {
+							path: 'WayBillNbr',
+							descending: false
+						}
+					}" >
+					<items>
+						<ObjectListItem
+							type="{= ${device>/system/phone} ? 'Active' : 'Inactive'}"
+							intro="{
+								parts: ['ArrivedTimeStamp', 'ScheduledTimeStamp'],
+								formatter: '.getIntro'
+							}"
+							icon="{
+								parts: ['WayBillNbr', 'PONbr', 'Matnr'],
+								formatter: '.geIcon'
+							}"
+							title="{= ${Matnr} ? ${Matnr} : ${PONbr} ? ${PONbr} : ${WayBillNbr}}"
+							number="{
+								parts: ['WayBillNbr', 'PONbr', 'Matnr'],
+								formatter: '.getNumber'
+							}"
+							numberState="{= ${EntryStatus} === 'R' ? 'Error' : 'None'}"
+							numberUnit="{= ${EntryStatus} === 'C' ? ${i18n>ExtendedSearch_Complete} : ${EntryStatus} === 'P' ? ${i18n>ExtendedSearch_Pending} : ${EntryStatus} === 'R' ? ${i18n>ExtendedSearch_Closed} : ${i18n>ExtendedSearch_Inbound} }" >
+							<attributes>
+								<ObjectAttribute
+									visible="{= ${MatnrDesc} ? true : false}"
+									text="{MatnrDesc}" />
+								<ObjectAttribute 
+									visible="{= ${VendorName} ? true : false}"
+									text="{i18n>ExtendedSearch_Vendor} {VendorName}" />
+								<!-- Waybill Number (for non waybills) -->
+								<ObjectAttribute
+									visible="{= (${PONbr} || ${Matnr}) ? true : false}"
+									text="{i18n>ExtendedSearch_Waybill} {WayBillNbr}" />
+							</attributes>
+							<firstStatus>
+								<ObjectStatus
+									text="{PendingAction}" />
+							</firstStatus>
+						</ObjectListItem>
+					</items>
+				</List>
+
+			</ScrollContainer>
+		</content>
+
+		<buttons>
+			<Button
+				visible="false"
+				id="idExtendedSearch_filterBtn"
+				icon="sap-icon://add-filter"
+				press="onExtendedSearchPressFilter" />
+			<Button
+				id="idExtendedSearch_cancelBtn"
+				text="{i18n>ExtendedSearch_canceBtn}"
+				press="onExtendedSearchPressCancel" />
+		</buttons>
+
+	</Dialog>
+</core:FragmentDefinition>

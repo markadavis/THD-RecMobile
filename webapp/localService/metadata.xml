@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="YDMM_RECEIVING_MSTR_SRV" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="PalletHeader" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="PalletID"/>
+				</Key>
+				<Property Name="PalletID" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Pallet ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="WayBillNbr" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Waybill Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="StoreID" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Store ID (Site)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="SealNbr" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Seal Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="TrailerNbr" Type="Edm.String" Nullable="false" MaxLength="15" sap:label="Trailer Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="CarrierCode" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Carrier Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="OriginLocation" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Origin Location" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="PalletStatus" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Pallet Status" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="POCount" Type="Edm.Int32" Nullable="false" sap:label="Number of Purchase Orders" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ItemCount" Type="Edm.Int32" Nullable="false" sap:label="Number of Articles" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="SortIndicator" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Sort Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Seal" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Seal Check Needed (Flag)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<NavigationProperty Name="PalletPOHeaders" Relationship="YDMM_RECEIVING_MSTR_SRV.PalletHeader2POHeader" FromRole="FromRole_PalletHeader2POHeader" ToRole="ToRole_PalletHeader2POHeader" sap:label="Pallet POs"/>
+				<NavigationProperty Name="PalletItems" Relationship="YDMM_RECEIVING_MSTR_SRV.PalletHeader2PalletItem" FromRole="FromRole_PalletHeader2PalletItem" ToRole="ToRole_PalletHeader2PalletItem" sap:label="Pallet Items (Articles)"/>
+			</EntityType>
+			<EntityType Name="BOLSearch" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="StoreID"/>
+					<PropertyRef Name="WayBillNbr"/>
+					<PropertyRef Name="PONbr"/>
+					<PropertyRef Name="ItemID"/>
+				</Key>
+				<Property Name="StoreID" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Site" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="WayBillNbr" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Waybill Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="PONbr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Purchasing Doc." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ItemID" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Article" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="MatnrDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Qty" Type="Edm.Decimal" Precision="13" Scale="3" sap:label="PO Quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="UnitOfMeasure" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Order Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+				<Property Name="Vendor" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Vendor" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="VendorName" Type="Edm.String" Nullable="false" MaxLength="35" sap:label="Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Carrier" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Code SCAC" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Seal" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Seal Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ScheduledTimeStamp" Type="Edm.DateTime" Precision="0" sap:label="Scheduled Timestamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ArrivedTimeStamp" Type="Edm.DateTime" Precision="0" sap:label="Arrived Timestamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="EntryStatus" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="BOL View" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="LoadType" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="Load Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ActionCode" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Action Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="PendingAction" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Pending Action" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+			</EntityType>
+			<EntityType Name="BOLRaw" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="WaybillNumber"/>
+					<PropertyRef Name="PO"/>
+					<PropertyRef Name="Article"/>
+				</Key>
+				<Property Name="WaybillNumber" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Waybill Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Site" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Site" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="PO" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Purchasing Doc." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Article" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Article" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ScheduleTimestamp" Type="Edm.DateTime" Precision="0" sap:label="Scheduled Timestamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ArrivedTimestamp" Type="Edm.DateTime" Precision="0" sap:label="Arrived Timestamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Department" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Dept Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="PalletCount" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Pallet Count" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ApptState" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Reservation State" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Seal" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Seal Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="SealIntact" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Seal Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="SealMatch" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Seal Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="SealDecertify" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Seal Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="RgrFlag" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="RGR Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="PdgrFlag" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="PDGR Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="DgrFlag" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="DGR Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="LoadType" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="Load Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="EntryStatus" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Entry Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Vendor" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Vendor" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="VendorName" Type="Edm.String" Nullable="false" MaxLength="35" sap:label="Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+			</EntityType>
+			<EntityType Name="Exception" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="StoreID"/>
+					<PropertyRef Name="WayBillNbr"/>
+					<PropertyRef Name="Pallet"/>
+					<PropertyRef Name="PONbr"/>
+					<PropertyRef Name="ItemID"/>
+					<PropertyRef Name="Article"/>
+				</Key>
+				<Property Name="StoreID" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Store (site) ID" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="WayBillNbr" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Waybill Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="Pallet" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Pallet ID" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="PONbr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="PO ID" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="ItemID" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="PO Item ID" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="Article" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Article ID" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Exception Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Text" Type="Edm.String" Nullable="false" MaxLength="72" sap:label="Exception Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Qty" Type="Edm.Decimal" Precision="13" Scale="3" sap:label="Exception Quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+			</EntityType>
+			<EntityType Name="DriverCheckIn" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="WayBillNbr"/>
+					<PropertyRef Name="StoreID"/>
+				</Key>
+				<Property Name="WayBillNbr" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Waybill" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="StoreID" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Site" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ArrivalTimeStamp" Type="Edm.DateTime" Precision="0" sap:label="Driver Arrived Timestamp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="SealNbrWms" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Seal Number From WMS" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="SealNbrSite" Type="Edm.String" Nullable="false" MaxLength="8" sap:label="Seal Number entered by store" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="SealIntact" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Seal Intact" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="CarrierCode" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Carrier Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="SealDecertify" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Seal Decertify" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Seal" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Seal Check" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="RefNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="RGR Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+			</EntityType>
+			<EntityType Name="PalletItem" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="StoreID"/>
+					<PropertyRef Name="WayBillNbr"/>
+					<PropertyRef Name="PalletID"/>
+					<PropertyRef Name="PONbr"/>
+					<PropertyRef Name="ItemID"/>
+				</Key>
+				<Property Name="StoreID" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Store ID" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="WayBillNbr" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Way Bill Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="PalletID" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Pallet ID" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="PONbr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Purchasing Doc." sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="ItemID" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="SortIndicator" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Article Sort indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Article" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Article" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="UPC" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="EAN/UPC" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="ArticleDescription" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ItemStatus" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Article Status Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="BaseUnit" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Base Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+				<Property Name="POQty" Type="Edm.Decimal" Precision="13" Scale="3" sap:label="PO Quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="AsnQty" Type="Edm.Decimal" Precision="13" Scale="3" sap:label="ASN Quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="OpenQty" Type="Edm.Decimal" Precision="13" Scale="3" sap:label="Open Quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="RecQty" Type="Edm.Decimal" Precision="13" Scale="3" sap:label="Received Quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Location" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="Location" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="SpecialOrder" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Special Order" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Seal" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Seal Check Needed (Flag)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+			</EntityType>
+			<EntityType Name="BOL" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="WayBillNbr"/>
+					<PropertyRef Name="StoreID"/>
+				</Key>
+				<Property Name="WayBillNbr" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Waybill Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="StoreID" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Store ID" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="ScheduleTimeStamp" Type="Edm.DateTime" Precision="0" sap:label="Scheduled Date" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="ArrivedTimeStamp" Type="Edm.DateTime" Precision="0" sap:label="Arrived Date" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="ApptState" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Appointment Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="LoadType" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="Load Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="PalletCount" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Pallet Count" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="POCount" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="PO Count" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Seal" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Seal Check Needed (Flag)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="SealIntact" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Seal intact flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="SealMatch" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Seal match flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="SealDecertify" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Seal decertify flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="DeptName" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Dept Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Vendor" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Vendor" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="VendorName" Type="Edm.String" Nullable="false" MaxLength="35" sap:label="Vendor Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="EntryStatus" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Entry Status (I - Inbound, P - Pending, C - completed)" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="ActionCode" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Action Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="PendingAction" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Pending Action" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<NavigationProperty Name="Pallets" Relationship="YDMM_RECEIVING_MSTR_SRV.BOL2PalletHeader" FromRole="FromRole_BOL2PalletHeader" ToRole="ToRole_BOL2PalletHeader"/>
+				<NavigationProperty Name="POHeaders" Relationship="YDMM_RECEIVING_MSTR_SRV.BOL2POHeader" FromRole="FromRole_BOL2POHeader" ToRole="ToRole_BOL2POHeader"/>
+				<NavigationProperty Name="POItems" Relationship="YDMM_RECEIVING_MSTR_SRV.BOL2POItem" FromRole="FromRole_BOL2POItem" ToRole="ToRole_BOL2POItem"/>
+				<NavigationProperty Name="Exceptions" Relationship="YDMM_RECEIVING_MSTR_SRV.BOL2Exception" FromRole="FromRole_BOL2Exception" ToRole="ToRole_BOL2Exception"/>
+				<NavigationProperty Name="BOLReturnItems" Relationship="YDMM_RECEIVING_MSTR_SRV.BOL2POReturnItem" FromRole="FromRole_BOL2POReturnItem" ToRole="ToRole_BOL2POReturnItem"/>
+			</EntityType>
+			<EntityType Name="POItem" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="PONbr"/>
+					<PropertyRef Name="ItemID"/>
+					<PropertyRef Name="StoreID"/>
+					<PropertyRef Name="WayBillNbr"/>
+				</Key>
+				<Property Name="PONbr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Purchasing Doc." sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="ItemID" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Article" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Article" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="ArticleDescription" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="POQty" Type="Edm.Decimal" Precision="13" Scale="3" sap:label="PO Quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="OpenQty" Type="Edm.Decimal" Precision="13" Scale="3" sap:label="Open Quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="AsnQty" Type="Edm.Decimal" Precision="13" Scale="3" sap:label="ASN Quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="RecQty" Type="Edm.Decimal" Precision="13" Scale="3" sap:label="Received Quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="BaseUnit" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Base Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+				<Property Name="UPC" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="EAN/UPC" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="StoreID" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Store ID" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="WayBillNbr" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Way Bill Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="ItemStatus" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Article Status Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="SortIndicator" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Article Sort indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Location" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="Location" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="SpecialOrder" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Special Order" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Seal" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Seal Check Needed (Flag)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<NavigationProperty Name="UPCs" Relationship="YDMM_RECEIVING_MSTR_SRV.POItem2UPC" FromRole="FromRole_POItem2UPC" ToRole="ToRole_POItem2UPC" sap:label="UPC for Article"/>
+			</EntityType>
+			<EntityType Name="POHeader" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="PONbr"/>
+					<PropertyRef Name="WayBillNbr"/>
+					<PropertyRef Name="StoreID"/>
+				</Key>
+				<Property Name="PONbr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Purchasing Doc." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="PalletID" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Handling Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="WayBillNbr" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Waybill Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="StoreID" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="StoreID" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="Vendor" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Vendor" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="VenName" Type="Edm.String" Nullable="false" MaxLength="35" sap:label="Vendor Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="RGRNbr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Rough GR" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Note2" Type="Edm.String" Nullable="false" MaxLength="72" sap:label="Damage Notes" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Certflg" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Cert Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Dgrflg" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="DGR Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Pdgrflg" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="PDGR Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="PfillDgr" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="DGR Prefill PO Qty" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="RefuseDgr" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="DGR for Shp Refuse" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Auditdgr" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Audit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="DGRCount" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="DGR Count" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Seal" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Seal Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="DcPo" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="DC PO" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ItemCount" Type="Edm.Int32" Nullable="false" sap:label="PO Line-Item Count" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="POStatus" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="PO Status" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="SortIndicator" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="PO Sort Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<NavigationProperty Name="POReturnItems" Relationship="YDMM_RECEIVING_MSTR_SRV.POHeader2POReturnItem" FromRole="FromRole_POHeader2POReturnItem" ToRole="ToRole_POHeader2POReturnItem" sap:label="Returnable Items for PO"/>
+				<NavigationProperty Name="POItems" Relationship="YDMM_RECEIVING_MSTR_SRV.POHeader2POItem" FromRole="FromRole_POHeader2POItem" ToRole="ToRole_POHeader2POItem" sap:label="PO Items for PO"/>
+			</EntityType>
+			<EntityType Name="UPC" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="PONbr"/>
+					<PropertyRef Name="ItemID"/>
+					<PropertyRef Name="StoreID"/>
+					<PropertyRef Name="WayBillNbr"/>
+				</Key>
+				<Property Name="Article" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Article" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="PONbr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Purchasing Doc." sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="BaseUnit" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Base Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+				<Property Name="ItemID" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Qty" Type="Edm.Decimal" Precision="13" Scale="3" sap:label="Qty in Base Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Upc" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="EAN/UPC" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="StoreID" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Site" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="WayBillNbr" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Waybill Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+			</EntityType>
+			<EntityType Name="Carrier" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="CarrierCode"/>
+				</Key>
+				<Property Name="CarrierCode" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Code SCAC" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="CarrierName" Type="Edm.String" Nullable="false" MaxLength="35" sap:label="Carrier Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="CarrierVendorNbr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Carrier (Vendor No.)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+			</EntityType>
+			<EntityType Name="ExceptionType" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="TypeCode"/>
+				</Key>
+				<Property Name="TypeCode" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Exception Type Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="TypeText" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="Exception Type Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+			</EntityType>
+			<EntityType Name="POReturnItem" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="Article"/>
+					<PropertyRef Name="PONbr"/>
+					<PropertyRef Name="StoreID"/>
+					<PropertyRef Name="WayBillNbr"/>
+				</Key>
+				<Property Name="Vendor" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Vendor" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Article" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Article" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="ArticleDescription" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="TenderQty" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Tender Quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="BaseUnit" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Base Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+				<Property Name="PONbr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="PO Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="StoreID" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Store ID" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="WayBillNbr" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Way Bill Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+				<Property Name="RetArtStatus" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Ret Article Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="SortIndicator" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Sort Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Seal" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Seal Check Needed (Flag)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+			</EntityType>
+			<EntityType Name="Location" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="StoreID"/>
+				</Key>
+				<Property Name="UserID" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="User ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="Language" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Language Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<Property Name="StoreID" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Store ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+				<NavigationProperty Name="SearchBOLs" Relationship="YDMM_RECEIVING_MSTR_SRV.Location2BOLSearch" FromRole="FromRole_Location2BOLSearch" ToRole="ToRole_Location2BOLSearch"/>
+				<NavigationProperty Name="BOLs" Relationship="YDMM_RECEIVING_MSTR_SRV.Location2BOL" FromRole="FromRole_Location2BOL" ToRole="ToRole_Location2BOL"/>
+			</EntityType>
+			<Association Name="Location2BOLSearch" sap:content-version="1" sap:label="Store to BOLSearch">
+				<End Type="YDMM_RECEIVING_MSTR_SRV.Location" Multiplicity="1" Role="FromRole_Location2BOLSearch"/>
+				<End Type="YDMM_RECEIVING_MSTR_SRV.BOLSearch" Multiplicity="*" Role="ToRole_Location2BOLSearch"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_Location2BOLSearch">
+						<PropertyRef Name="StoreID"/>
+					</Principal>
+					<Dependent Role="ToRole_Location2BOLSearch">
+						<PropertyRef Name="StoreID"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="Location2BOL" sap:content-version="1" sap:label="Store to BOLs">
+				<End Type="YDMM_RECEIVING_MSTR_SRV.Location" Multiplicity="1" Role="FromRole_Location2BOL"/>
+				<End Type="YDMM_RECEIVING_MSTR_SRV.BOL" Multiplicity="*" Role="ToRole_Location2BOL"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_Location2BOL">
+						<PropertyRef Name="StoreID"/>
+					</Principal>
+					<Dependent Role="ToRole_Location2BOL">
+						<PropertyRef Name="StoreID"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="POItem2UPC" sap:content-version="1" sap:label="PO Items to UPC">
+				<End Type="YDMM_RECEIVING_MSTR_SRV.POItem" Multiplicity="1" Role="FromRole_POItem2UPC"/>
+				<End Type="YDMM_RECEIVING_MSTR_SRV.UPC" Multiplicity="*" Role="ToRole_POItem2UPC"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_POItem2UPC">
+						<PropertyRef Name="PONbr"/>
+						<PropertyRef Name="ItemID"/>
+						<PropertyRef Name="WayBillNbr"/>
+						<PropertyRef Name="StoreID"/>
+					</Principal>
+					<Dependent Role="ToRole_POItem2UPC">
+						<PropertyRef Name="PONbr"/>
+						<PropertyRef Name="ItemID"/>
+						<PropertyRef Name="WayBillNbr"/>
+						<PropertyRef Name="StoreID"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="BOL2POHeader" sap:content-version="1" sap:label="BOL to POs">
+				<End Type="YDMM_RECEIVING_MSTR_SRV.BOL" Multiplicity="1" Role="FromRole_BOL2POHeader"/>
+				<End Type="YDMM_RECEIVING_MSTR_SRV.POHeader" Multiplicity="*" Role="ToRole_BOL2POHeader"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_BOL2POHeader">
+						<PropertyRef Name="StoreID"/>
+						<PropertyRef Name="WayBillNbr"/>
+					</Principal>
+					<Dependent Role="ToRole_BOL2POHeader">
+						<PropertyRef Name="StoreID"/>
+						<PropertyRef Name="WayBillNbr"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="BOL2POItem" sap:content-version="1" sap:label="BOL to PO Item">
+				<End Type="YDMM_RECEIVING_MSTR_SRV.BOL" Multiplicity="1" Role="FromRole_BOL2POItem"/>
+				<End Type="YDMM_RECEIVING_MSTR_SRV.POItem" Multiplicity="*" Role="ToRole_BOL2POItem"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_BOL2POItem">
+						<PropertyRef Name="StoreID"/>
+						<PropertyRef Name="WayBillNbr"/>
+					</Principal>
+					<Dependent Role="ToRole_BOL2POItem">
+						<PropertyRef Name="StoreID"/>
+						<PropertyRef Name="WayBillNbr"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="BOL2PalletHeader" sap:content-version="1" sap:label="BOL to Pallets">
+				<End Type="YDMM_RECEIVING_MSTR_SRV.BOL" Multiplicity="1" Role="FromRole_BOL2PalletHeader"/>
+				<End Type="YDMM_RECEIVING_MSTR_SRV.PalletHeader" Multiplicity="*" Role="ToRole_BOL2PalletHeader"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_BOL2PalletHeader">
+						<PropertyRef Name="WayBillNbr"/>
+						<PropertyRef Name="StoreID"/>
+					</Principal>
+					<Dependent Role="ToRole_BOL2PalletHeader">
+						<PropertyRef Name="WayBillNbr"/>
+						<PropertyRef Name="StoreID"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="BOL2Exception" sap:content-version="1">
+				<End Type="YDMM_RECEIVING_MSTR_SRV.BOL" Multiplicity="1" Role="FromRole_BOL2Exception"/>
+				<End Type="YDMM_RECEIVING_MSTR_SRV.Exception" Multiplicity="*" Role="ToRole_BOL2Exception"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_BOL2Exception">
+						<PropertyRef Name="WayBillNbr"/>
+						<PropertyRef Name="StoreID"/>
+					</Principal>
+					<Dependent Role="ToRole_BOL2Exception">
+						<PropertyRef Name="WayBillNbr"/>
+						<PropertyRef Name="StoreID"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="BOL2POReturnItem" sap:content-version="1" sap:label="BOL to PO Return Item">
+				<End Type="YDMM_RECEIVING_MSTR_SRV.BOL" Multiplicity="1" Role="FromRole_BOL2POReturnItem"/>
+				<End Type="YDMM_RECEIVING_MSTR_SRV.POReturnItem" Multiplicity="*" Role="ToRole_BOL2POReturnItem"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_BOL2POReturnItem">
+						<PropertyRef Name="StoreID"/>
+						<PropertyRef Name="WayBillNbr"/>
+					</Principal>
+					<Dependent Role="ToRole_BOL2POReturnItem">
+						<PropertyRef Name="StoreID"/>
+						<PropertyRef Name="WayBillNbr"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="POHeader2POItem" sap:content-version="1" sap:label="Purchase Order Header to Items">
+				<End Type="YDMM_RECEIVING_MSTR_SRV.POHeader" Multiplicity="1" Role="FromRole_POHeader2POItem"/>
+				<End Type="YDMM_RECEIVING_MSTR_SRV.POItem" Multiplicity="*" Role="ToRole_POHeader2POItem"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_POHeader2POItem">
+						<PropertyRef Name="PONbr"/>
+						<PropertyRef Name="StoreID"/>
+						<PropertyRef Name="WayBillNbr"/>
+					</Principal>
+					<Dependent Role="ToRole_POHeader2POItem">
+						<PropertyRef Name="PONbr"/>
+						<PropertyRef Name="StoreID"/>
+						<PropertyRef Name="WayBillNbr"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="POHeader2POReturnItem" sap:content-version="1" sap:label="Purchase Order to Returnable Articles">
+				<End Type="YDMM_RECEIVING_MSTR_SRV.POHeader" Multiplicity="1" Role="FromRole_POHeader2POReturnItem"/>
+				<End Type="YDMM_RECEIVING_MSTR_SRV.POReturnItem" Multiplicity="*" Role="ToRole_POHeader2POReturnItem"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_POHeader2POReturnItem">
+						<PropertyRef Name="PONbr"/>
+						<PropertyRef Name="StoreID"/>
+						<PropertyRef Name="WayBillNbr"/>
+					</Principal>
+					<Dependent Role="ToRole_POHeader2POReturnItem">
+						<PropertyRef Name="PONbr"/>
+						<PropertyRef Name="StoreID"/>
+						<PropertyRef Name="WayBillNbr"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="PalletHeader2POHeader" sap:content-version="1" sap:label="Pallet to POs">
+				<End Type="YDMM_RECEIVING_MSTR_SRV.PalletHeader" Multiplicity="1" Role="FromRole_PalletHeader2POHeader"/>
+				<End Type="YDMM_RECEIVING_MSTR_SRV.POHeader" Multiplicity="*" Role="ToRole_PalletHeader2POHeader"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_PalletHeader2POHeader">
+						<PropertyRef Name="PalletID"/>
+					</Principal>
+					<Dependent Role="ToRole_PalletHeader2POHeader">
+						<PropertyRef Name="PalletID"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="PalletHeader2PalletItem" sap:content-version="1" sap:label="Pallet to Pallet Items (POs)">
+				<End Type="YDMM_RECEIVING_MSTR_SRV.PalletHeader" Multiplicity="1" Role="FromRole_PalletHeader2PalletItem"/>
+				<End Type="YDMM_RECEIVING_MSTR_SRV.PalletItem" Multiplicity="*" Role="ToRole_PalletHeader2PalletItem"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_PalletHeader2PalletItem">
+						<PropertyRef Name="PalletID"/>
+					</Principal>
+					<Dependent Role="ToRole_PalletHeader2PalletItem">
+						<PropertyRef Name="PalletID"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="YDMM_RECEIVING_MSTR_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+				<EntitySet Name="PalletHeaderSet" EntityType="YDMM_RECEIVING_MSTR_SRV.PalletHeader" sap:creatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="BOLSearchSet" EntityType="YDMM_RECEIVING_MSTR_SRV.BOLSearch" sap:creatable="false" sap:deletable="false" sap:pageable="false" sap:requires-filter="true" sap:content-version="1"/>
+				<EntitySet Name="BOLRawSet" EntityType="YDMM_RECEIVING_MSTR_SRV.BOLRaw" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="ExceptionSet" EntityType="YDMM_RECEIVING_MSTR_SRV.Exception" sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="DriverCheckInSet" EntityType="YDMM_RECEIVING_MSTR_SRV.DriverCheckIn" sap:creatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="PalletItemSet" EntityType="YDMM_RECEIVING_MSTR_SRV.PalletItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="BOLSet" EntityType="YDMM_RECEIVING_MSTR_SRV.BOL" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="POItemSet" EntityType="YDMM_RECEIVING_MSTR_SRV.POItem" sap:creatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="POHeaderSet" EntityType="YDMM_RECEIVING_MSTR_SRV.POHeader" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="UPCSet" EntityType="YDMM_RECEIVING_MSTR_SRV.UPC" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="CarrierSet" EntityType="YDMM_RECEIVING_MSTR_SRV.Carrier" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="ExceptionTypeSet" EntityType="YDMM_RECEIVING_MSTR_SRV.ExceptionType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="POReturnItemSet" EntityType="YDMM_RECEIVING_MSTR_SRV.POReturnItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+				<EntitySet Name="LocationSet" EntityType="YDMM_RECEIVING_MSTR_SRV.Location" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+				<AssociationSet Name="BOL2ExceptionSet" Association="YDMM_RECEIVING_MSTR_SRV.BOL2Exception" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+					<End EntitySet="BOLSet" Role="FromRole_BOL2Exception"/>
+					<End EntitySet="ExceptionSet" Role="ToRole_BOL2Exception"/>
+				</AssociationSet>
+				<AssociationSet Name="Location2BOLSearchSet" Association="YDMM_RECEIVING_MSTR_SRV.Location2BOLSearch" sap:label="Set of Location to BOLSearch" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+					<End EntitySet="LocationSet" Role="FromRole_Location2BOLSearch"/>
+					<End EntitySet="BOLSearchSet" Role="ToRole_Location2BOLSearch"/>
+				</AssociationSet>
+				<AssociationSet Name="BOL2POReturnItemSet" Association="YDMM_RECEIVING_MSTR_SRV.BOL2POReturnItem" sap:label="Set of BOL to PO Return Items" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+					<End EntitySet="BOLSet" Role="FromRole_BOL2POReturnItem"/>
+					<End EntitySet="POReturnItemSet" Role="ToRole_BOL2POReturnItem"/>
+				</AssociationSet>
+				<AssociationSet Name="Location2BOLSet" Association="YDMM_RECEIVING_MSTR_SRV.Location2BOL" sap:label="Set of Location to BOLs" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+					<End EntitySet="LocationSet" Role="FromRole_Location2BOL"/>
+					<End EntitySet="BOLSet" Role="ToRole_Location2BOL"/>
+				</AssociationSet>
+				<AssociationSet Name="POHeader2POReturnItemSet" Association="YDMM_RECEIVING_MSTR_SRV.POHeader2POReturnItem" sap:label="Set of PO to PO Return Items" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+					<End EntitySet="POHeaderSet" Role="FromRole_POHeader2POReturnItem"/>
+					<End EntitySet="POReturnItemSet" Role="ToRole_POHeader2POReturnItem"/>
+				</AssociationSet>
+				<AssociationSet Name="BOL2PalletSet" Association="YDMM_RECEIVING_MSTR_SRV.BOL2PalletHeader" sap:label="Set of BOL to Pallets" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+					<End EntitySet="BOLSet" Role="FromRole_BOL2PalletHeader"/>
+					<End EntitySet="PalletHeaderSet" Role="ToRole_BOL2PalletHeader"/>
+				</AssociationSet>
+				<AssociationSet Name="POItem2UPC_AssocSet" Association="YDMM_RECEIVING_MSTR_SRV.POItem2UPC" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+					<End EntitySet="POItemSet" Role="FromRole_POItem2UPC"/>
+					<End EntitySet="UPCSet" Role="ToRole_POItem2UPC"/>
+				</AssociationSet>
+				<AssociationSet Name="BOL2POItemSet" Association="YDMM_RECEIVING_MSTR_SRV.BOL2POItem" sap:label="Set of BOL to PO Items" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+					<End EntitySet="BOLSet" Role="FromRole_BOL2POItem"/>
+					<End EntitySet="POItemSet" Role="ToRole_BOL2POItem"/>
+				</AssociationSet>
+				<AssociationSet Name="PalletHeader2PalletItem_AssocSet" Association="YDMM_RECEIVING_MSTR_SRV.PalletHeader2PalletItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+					<End EntitySet="PalletHeaderSet" Role="FromRole_PalletHeader2PalletItem"/>
+					<End EntitySet="PalletItemSet" Role="ToRole_PalletHeader2PalletItem"/>
+				</AssociationSet>
+				<AssociationSet Name="BOL2POHeaderSet" Association="YDMM_RECEIVING_MSTR_SRV.BOL2POHeader" sap:label="Set of BOL to POs" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+					<End EntitySet="BOLSet" Role="FromRole_BOL2POHeader"/>
+					<End EntitySet="POHeaderSet" Role="ToRole_BOL2POHeader"/>
+				</AssociationSet>
+				<AssociationSet Name="PalletHeader2POHeaderSet" Association="YDMM_RECEIVING_MSTR_SRV.PalletHeader2POHeader" sap:label="Set of Pallet to POs" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+					<End EntitySet="PalletHeaderSet" Role="FromRole_PalletHeader2POHeader"/>
+					<End EntitySet="POHeaderSet" Role="ToRole_PalletHeader2POHeader"/>
+				</AssociationSet>
+				<AssociationSet Name="POHeader2POItemSet" Association="YDMM_RECEIVING_MSTR_SRV.POHeader2POItem" sap:label="Set of PO to PO Items" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+					<End EntitySet="POHeaderSet" Role="FromRole_POHeader2POItem"/>
+					<End EntitySet="POItemSet" Role="ToRole_POHeader2POItem"/>
+				</AssociationSet>
+			</EntityContainer>
+			<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="https://webidetesting0764475-b981b0379.dispatcher.us1.hana.ondemand.com/sap/opu/odata/sap/YDMM_RECEIVING_MSTR_SRV/$metadata"/>
+			<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="https://webidetesting0764475-b981b0379.dispatcher.us1.hana.ondemand.com/sap/opu/odata/sap/YDMM_RECEIVING_MSTR_SRV/$metadata"/>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,141 @@
+[{
+	"StoreID": "StoreID 1",
+	"WayBillNbr": "WayBillNbr 1",
+	"Pallet": "Pallet 1",
+	"PONbr": "PONbr 1",
+	"ItemID": "ItemID 1",
+	"Article": "Article 1",
+	"Type": "Type 1",
+	"Text": "Text 1",
+	"Qty": 8640.16,
+	"__metadata": {
+		"uri": "ExceptionSet(StoreID='StoreID%201',WayBillNbr='WayBillNbr%201',Pallet='Pallet%201',PONbr='PONbr%201',ItemID='ItemID%201',Article='Article%201')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.Exception"
+	}
+}, {
+	"StoreID": "StoreID 2",
+	"WayBillNbr": "WayBillNbr 2",
+	"Pallet": "Pallet 2",
+	"PONbr": "PONbr 2",
+	"ItemID": "ItemID 2",
+	"Article": "Article 2",
+	"Type": "Type 2",
+	"Text": "Text 2",
+	"Qty": 3361.14,
+	"__metadata": {
+		"uri": "ExceptionSet(StoreID='StoreID%202',WayBillNbr='WayBillNbr%202',Pallet='Pallet%202',PONbr='PONbr%202',ItemID='ItemID%202',Article='Article%202')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.Exception"
+	}
+}, {
+	"StoreID": "StoreID 3",
+	"WayBillNbr": "WayBillNbr 3",
+	"Pallet": "Pallet 3",
+	"PONbr": "PONbr 3",
+	"ItemID": "ItemID 3",
+	"Article": "Article 3",
+	"Type": "Type 3",
+	"Text": "Text 3",
+	"Qty": 9003.65,
+	"__metadata": {
+		"uri": "ExceptionSet(StoreID='StoreID%203',WayBillNbr='WayBillNbr%203',Pallet='Pallet%203',PONbr='PONbr%203',ItemID='ItemID%203',Article='Article%203')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.Exception"
+	}
+}, {
+	"StoreID": "StoreID 4",
+	"WayBillNbr": "WayBillNbr 4",
+	"Pallet": "Pallet 4",
+	"PONbr": "PONbr 4",
+	"ItemID": "ItemID 4",
+	"Article": "Article 4",
+	"Type": "Type 4",
+	"Text": "Text 4",
+	"Qty": 5445.46,
+	"__metadata": {
+		"uri": "ExceptionSet(StoreID='StoreID%204',WayBillNbr='WayBillNbr%204',Pallet='Pallet%204',PONbr='PONbr%204',ItemID='ItemID%204',Article='Article%204')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.Exception"
+	}
+}, {
+	"StoreID": "StoreID 5",
+	"WayBillNbr": "WayBillNbr 5",
+	"Pallet": "Pallet 5",
+	"PONbr": "PONbr 5",
+	"ItemID": "ItemID 5",
+	"Article": "Article 5",
+	"Type": "Type 5",
+	"Text": "Text 5",
+	"Qty": 9001.32,
+	"__metadata": {
+		"uri": "ExceptionSet(StoreID='StoreID%205',WayBillNbr='WayBillNbr%205',Pallet='Pallet%205',PONbr='PONbr%205',ItemID='ItemID%205',Article='Article%205')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.Exception"
+	}
+}, {
+	"StoreID": "StoreID 6",
+	"WayBillNbr": "WayBillNbr 6",
+	"Pallet": "Pallet 6",
+	"PONbr": "PONbr 6",
+	"ItemID": "ItemID 6",
+	"Article": "Article 6",
+	"Type": "Type 6",
+	"Text": "Text 6",
+	"Qty": 1888.69,
+	"__metadata": {
+		"uri": "ExceptionSet(StoreID='StoreID%206',WayBillNbr='WayBillNbr%206',Pallet='Pallet%206',PONbr='PONbr%206',ItemID='ItemID%206',Article='Article%206')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.Exception"
+	}
+}, {
+	"StoreID": "StoreID 7",
+	"WayBillNbr": "WayBillNbr 7",
+	"Pallet": "Pallet 7",
+	"PONbr": "PONbr 7",
+	"ItemID": "ItemID 7",
+	"Article": "Article 7",
+	"Type": "Type 7",
+	"Text": "Text 7",
+	"Qty": 9136.84,
+	"__metadata": {
+		"uri": "ExceptionSet(StoreID='StoreID%207',WayBillNbr='WayBillNbr%207',Pallet='Pallet%207',PONbr='PONbr%207',ItemID='ItemID%207',Article='Article%207')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.Exception"
+	}
+}, {
+	"StoreID": "StoreID 8",
+	"WayBillNbr": "WayBillNbr 8",
+	"Pallet": "Pallet 8",
+	"PONbr": "PONbr 8",
+	"ItemID": "ItemID 8",
+	"Article": "Article 8",
+	"Type": "Type 8",
+	"Text": "Text 8",
+	"Qty": 8318.54,
+	"__metadata": {
+		"uri": "ExceptionSet(StoreID='StoreID%208',WayBillNbr='WayBillNbr%208',Pallet='Pallet%208',PONbr='PONbr%208',ItemID='ItemID%208',Article='Article%208')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.Exception"
+	}
+}, {
+	"StoreID": "StoreID 9",
+	"WayBillNbr": "WayBillNbr 9",
+	"Pallet": "Pallet 9",
+	"PONbr": "PONbr 9",
+	"ItemID": "ItemID 9",
+	"Article": "Article 9",
+	"Type": "Type 9",
+	"Text": "Text 9",
+	"Qty": 5085.38,
+	"__metadata": {
+		"uri": "ExceptionSet(StoreID='StoreID%209',WayBillNbr='WayBillNbr%209',Pallet='Pallet%209',PONbr='PONbr%209',ItemID='ItemID%209',Article='Article%209')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.Exception"
+	}
+}, {
+	"StoreID": "StoreID 10",
+	"WayBillNbr": "WayBillNbr 10",
+	"Pallet": "Pallet 10",
+	"PONbr": "PONbr 10",
+	"ItemID": "ItemID 10",
+	"Article": "Article 10",
+	"Type": "Type 10",
+	"Text": "Text 10",
+	"Qty": 6032.05,
+	"__metadata": {
+		"uri": "ExceptionSet(StoreID='StoreID%2010',WayBillNbr='WayBillNbr%2010',Pallet='Pallet%2010',PONbr='PONbr%2010',ItemID='ItemID%2010',Article='Article%2010')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.Exception"
+	}
+}]

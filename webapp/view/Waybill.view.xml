@@ -1,0 +1,216 @@
+<core:View controllerName="thd.recmobile.controller.Waybill"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m" >
+
+	<Page
+		id="idWaybillPage"
+		title="{i18n>WaybillPageTitle} {waybillView>/data/Waybill/WayBillNbr}"
+		showNavButton="true"
+		navButtonPress="onNavButtonPress" >
+		<content>
+
+			<Panel
+				id="idWaybillPanel"
+				backgroundDesign="Solid"
+				expandable="true"
+				expanded="{= ${waybillView>/data/Waybill/ActionCode} === '04' ? true : false}"
+				expand="onDetailHeaderExpand" >
+
+				<headerToolbar>
+					<Toolbar>
+						<Button
+							type="{= ${waybillView>/data/Waybill/EntryStatus} === 'C' ? 'Accept' : ${waybillView>/data/Waybill/EntryStatus} === 'I' ? 'Emphasized' : 'Reject'}"
+							icon="{= ${waybillView>/data/Waybill/EntryStatus} === 'C' ? 'sap-icon://sys-enter-2' : ${waybillView>/data/Waybill/EntryStatus} === 'I' ? 'sap-icon://sys-minus' : 'sap-icon://message-warning' }"
+							press="onDetailHeaderExpand" >
+							<layoutData>
+								<FlexItemData alignSelf="Start" />
+								<FlexItemData growFactor="1" />
+							</layoutData>
+						</Button>
+						<Button
+							type="Transparent"
+							iconFirst="false"
+							text="{
+								parts: ['waybillView>/data/Waybill/ActionCode', 'waybillView>/data/Waybill'],
+								formatter: '.formatter.statusText'
+							}"
+							press="onDetailHeaderExpand" />
+					</Toolbar>
+				</headerToolbar>
+
+				<infoToolbar>
+					<Toolbar
+						design="Solid"
+						visible="{= ${waybillView>/data/Waybill/EntryStatus} === 'I' ? false : true }" >
+						<Button
+							icon="sap-icon://shipping-status"
+							text="{i18n>WaybillPanel_ToolbarInfoBtn}"
+							press="onCheckInPress" />
+						<ToolbarSpacer />
+						<Button
+							icon="sap-icon://message-popup"
+							type="{
+								parts: ['waybillView>/data/Waybill/StoreID','waybillView>/data/Waybill/WayBillNbr','X','X','X','X'],
+								formatter: '.formatter.exceptionBtnType'
+							}"
+							text="{i18n>WaybillPanel_ToolbarReportIssueBtn}"
+							press="onReportIssue" >
+							<customData>
+								<core:CustomData
+									key="DetailHeaderPanel_BtnReport"
+									value="'StoreID':'{waybillView>/data/Waybill/StoreID}','WayBillNbr':'{waybillView>/data/Waybill/WayBillNbr}'"
+									writeToDom="true" />
+							</customData>
+						</Button>
+					</Toolbar>
+				</infoToolbar>
+
+				<ObjectHeader
+					id="idDetailHeader_mobile"
+					visible="{= ${device>/system/phone} ? true : false}"
+					responsive="true"
+					fullScreenOptimized="false"
+					backgroundDesign="Solid"
+					title="{i18n>WaybillPanel_HeaderTitle} {waybillView>/data/Waybill/LoadType}"
+					number="{= ${waybillView>/data/Waybill/Seal} === 'X' ? ${waybillView>/data/Waybill/PalletCount} : ${waybillView>/data/Waybill/POCount}}"
+					numberUnit="{= ${waybillView>/data/Waybill/Seal} === 'X' ? parseInt(${waybillView>/data/Waybill/PalletCount}) === 1 ? ${i18n>WaybillHeader_PalletUnit} : ${i18n>WaybillHeader_PalletUnits} : parseInt(${waybillView>/data/Waybill/POCount}) === 1 ? ${i18n>WaybillHeader_POUnit} : ${i18n>WaybillHeader_POUnits} }" >
+					<statuses>
+						<ObjectStatus
+							title="{i18n>WaybillHeader_ExceptionsLbl}"
+							text="{= ${waybillView>/data/IssueCount} === 0 ? ${i18n>WaybillHeader_NoExceptions} : ${waybillView>/data/IssueCount} }"
+							state="{= ${waybillView>/data/IssueCount} === 0 ? 'Success' : 'Error' }" />
+					</statuses>
+					<attributes>
+						<ObjectAttribute
+							title="{i18n>WaybillPanel_HeaderLabelScheduleTime}"
+							text="{
+								path: 'waybillView>/data/Waybill/ScheduleTimeStamp',
+								formatter: '.formatScheduledDateTimeStamp'
+							}" />
+						<ObjectAttribute
+							title="{i18n>WaybillPanel_HeaderLabelArrivalTime}"
+							text="{
+								path: 'waybillView>/data/Waybill/ArrivedTimeStamp',
+								formatter: '.formatArrivedDateTimeStamp'
+							}" />
+						<ObjectAttribute
+							title="{i18n>WaybillPanel_HeaderLabelVendorName}"
+							text="{waybillView>/data/Waybill/VendorName}" />
+						<ObjectAttribute
+							title="{i18n>WaybillPanel_HeaderLabelShipDepartment}"
+							text="{waybillView>/data/Waybill/DeptName}" />
+					</attributes>
+				</ObjectHeader>
+			</Panel>
+
+			<!-- PALLET Tab Bar -->
+			<IconTabBar
+				id="idWaybillPageTabBarPallet"
+				applyContentPadding="false"
+				stretchContentHeight="false"
+				upperCase="false"
+				expandable="false"
+				expanded="true"
+				visible="{= ${waybillView>/data/Waybill/Seal} === 'X' ? true : false }"
+				select="onTabBarSelect" >
+				<items>
+					<IconTabFilter
+						text="{i18n>WaybillPageTabBar_Pending}"
+						key="Pending"
+						icon="sap-icon://sys-minus"
+						iconColor="Neutral"
+						visible = "{= ${waybillView>/data/PalletRGRCount} === '0' ? false : true }"
+						count="{waybillView>/data/PalletRGRCount}" >
+						<content>
+							<core:Fragment
+								type="XML"
+								fragmentName="thd.recmobile.viewFragment.PalletListPending" />
+						</content>
+					</IconTabFilter>
+					<IconTabFilter
+						text="{i18n>WaybillPageTabBar_DGR}"
+						key="DGR"
+						icon="sap-icon://message-warning"
+						iconColor="Negative"
+						visible="{= ${waybillView>/data/PalletDGRCount} === '0' ? false : true }"
+						count="{waybillView>/data/PalletDGRCount}" >
+						<content>
+							<core:Fragment
+								type="XML"
+								fragmentName="thd.recmobile.viewFragment.PalletListDGR" />
+						</content>
+					</IconTabFilter>
+					<IconTabFilter
+						text="{i18n>WaybillPageTabBar_Received}"
+						key="Received"
+						icon="sap-icon://sys-enter"
+						iconColor="Positive"
+						visible="{= ${waybillView>/data/PalletReceivedCount} === '0' ? false : true }"
+						count="{waybillView>/data/PalletReceivedCount}" >
+						<content>
+							<core:Fragment
+								type="XML"
+								fragmentName="thd.recmobile.viewFragment.PalletListReceived" />
+						</content>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+
+			<!-- PO Tab Bar -->
+			<IconTabBar
+				id="idWaybillPageTabBarPO"
+				applyContentPadding="true"
+				stretchContentHeight="false"
+				upperCase="false"
+				expandable="false"
+				expanded="true"
+				visible="{= ${waybillView>/data/Waybill/Seal} === 'X' ? false : true }"
+				select="onTabBarSelect" >
+				<items>
+					<IconTabFilter
+						text="{i18n>WaybillPageTabBar_Pending}"
+						key="Pending"
+						icon="sap-icon://sys-minus"
+						iconColor="Neutral"
+						visible = "{= ${waybillView>/data/PORGRCount} === '0' ? false : true }"
+						count="{waybillView>/data/PORGRCount}" >
+						<content>
+							<core:Fragment
+								type="XML"
+								fragmentName="thd.recmobile.viewFragment.POListPending" />
+						</content>
+					</IconTabFilter>
+					<IconTabFilter
+						text="{i18n>WaybillPageTabBar_DGR}"
+						key="DGR"
+						icon="sap-icon://message-warning"
+						iconColor="Negative"
+						visible="{= ${waybillView>/data/PODGRCount} === '0' ? false : true }"
+						count="{waybillView>/data/PODGRCount}" >
+						<content>
+							<core:Fragment
+								type="XML"
+								fragmentName="thd.recmobile.viewFragment.POListDGR" />
+						</content>
+					</IconTabFilter>
+					<IconTabFilter
+						text="{i18n>WaybillPageTabBar_Received}"
+						key="Received"
+						icon="sap-icon://sys-enter"
+						iconColor="Positive"
+						visible="{= ${waybillView>/data/POReceivedCount} === '0' ? false : true }"
+						count="{waybillView>/data/POReceivedCount}" >
+						<content>
+							<core:Fragment
+								type="XML"
+								fragmentName="thd.recmobile.viewFragment.POListReceived" />
+						</content>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+
+		</content>
+		<footer></footer>
+	</Page>
+
+</core:View>

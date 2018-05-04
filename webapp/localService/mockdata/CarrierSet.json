@@ -1,0 +1,81 @@
+[{
+	"CarrierCode": "CarrierCode 1",
+	"CarrierName": "CarrierName 1",
+	"CarrierVendorNbr": "CarrierVendorNbr 1",
+	"__metadata": {
+		"uri": "CarrierSet('CarrierCode%201')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.Carrier"
+	}
+}, {
+	"CarrierCode": "CarrierCode 2",
+	"CarrierName": "CarrierName 2",
+	"CarrierVendorNbr": "CarrierVendorNbr 2",
+	"__metadata": {
+		"uri": "CarrierSet('CarrierCode%202')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.Carrier"
+	}
+}, {
+	"CarrierCode": "CarrierCode 3",
+	"CarrierName": "CarrierName 3",
+	"CarrierVendorNbr": "CarrierVendorNbr 3",
+	"__metadata": {
+		"uri": "CarrierSet('CarrierCode%203')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.Carrier"
+	}
+}, {
+	"CarrierCode": "CarrierCode 4",
+	"CarrierName": "CarrierName 4",
+	"CarrierVendorNbr": "CarrierVendorNbr 4",
+	"__metadata": {
+		"uri": "CarrierSet('CarrierCode%204')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.Carrier"
+	}
+}, {
+	"CarrierCode": "CarrierCode 5",
+	"CarrierName": "CarrierName 5",
+	"CarrierVendorNbr": "CarrierVendorNbr 5",
+	"__metadata": {
+		"uri": "CarrierSet('CarrierCode%205')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.Carrier"
+	}
+}, {
+	"CarrierCode": "CarrierCode 6",
+	"CarrierName": "CarrierName 6",
+	"CarrierVendorNbr": "CarrierVendorNbr 6",
+	"__metadata": {
+		"uri": "CarrierSet('CarrierCode%206')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.Carrier"
+	}
+}, {
+	"CarrierCode": "CarrierCode 7",
+	"CarrierName": "CarrierName 7",
+	"CarrierVendorNbr": "CarrierVendorNbr 7",
+	"__metadata": {
+		"uri": "CarrierSet('CarrierCode%207')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.Carrier"
+	}
+}, {
+	"CarrierCode": "CarrierCode 8",
+	"CarrierName": "CarrierName 8",
+	"CarrierVendorNbr": "CarrierVendorNbr 8",
+	"__metadata": {
+		"uri": "CarrierSet('CarrierCode%208')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.Carrier"
+	}
+}, {
+	"CarrierCode": "CarrierCode 9",
+	"CarrierName": "CarrierName 9",
+	"CarrierVendorNbr": "CarrierVendorNbr 9",
+	"__metadata": {
+		"uri": "CarrierSet('CarrierCode%209')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.Carrier"
+	}
+}, {
+	"CarrierCode": "CarrierCode 10",
+	"CarrierName": "CarrierName 10",
+	"CarrierVendorNbr": "CarrierVendorNbr 10",
+	"__metadata": {
+		"uri": "CarrierSet('CarrierCode%2010')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.Carrier"
+	}
+}]

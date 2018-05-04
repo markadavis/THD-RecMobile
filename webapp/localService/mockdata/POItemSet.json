@@ -1,0 +1,271 @@
+[{
+	"PONbr": "PONbr 1",
+	"ItemID": "ItemID 1",
+	"Article": "Article 1",
+	"ArticleDescription": "ArticleDescription 1",
+	"POQty": 1892.21,
+	"OpenQty": 6972.71,
+	"AsnQty": 4509.82,
+	"RecQty": 6639.04,
+	"BaseUnit": "BaseUnit 1",
+	"UPC": "UPC 1",
+	"StoreID": "StoreID 1",
+	"WayBillNbr": "WayBillNbr 1",
+	"ItemStatus": "ItemStatus 1",
+	"SortIndicator": "SortIndicator 1",
+	"Location": "Location 1",
+	"SpecialOrder": "SpecialOrder 1",
+	"Seal": "Seal 1",
+	"__metadata": {
+		"uri": "POItemSet(PONbr='PONbr%201',ItemID='ItemID%201',StoreID='StoreID%201',WayBillNbr='WayBillNbr%201')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.POItem"
+	},
+	"UPCs": {
+		"__deferred": {
+			"uri": "POItemSet(PONbr='PONbr%201',ItemID='ItemID%201',StoreID='StoreID%201',WayBillNbr='WayBillNbr%201')/UPCs"
+		}
+	}
+}, {
+	"PONbr": "PONbr 2",
+	"ItemID": "ItemID 2",
+	"Article": "Article 2",
+	"ArticleDescription": "ArticleDescription 2",
+	"POQty": 5376.98,
+	"OpenQty": 8192.87,
+	"AsnQty": 5100.82,
+	"RecQty": 3286.93,
+	"BaseUnit": "BaseUnit 2",
+	"UPC": "UPC 2",
+	"StoreID": "StoreID 2",
+	"WayBillNbr": "WayBillNbr 2",
+	"ItemStatus": "ItemStatus 2",
+	"SortIndicator": "SortIndicator 2",
+	"Location": "Location 2",
+	"SpecialOrder": "SpecialOrder 2",
+	"Seal": "Seal 2",
+	"__metadata": {
+		"uri": "POItemSet(PONbr='PONbr%202',ItemID='ItemID%202',StoreID='StoreID%202',WayBillNbr='WayBillNbr%202')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.POItem"
+	},
+	"UPCs": {
+		"__deferred": {
+			"uri": "POItemSet(PONbr='PONbr%202',ItemID='ItemID%202',StoreID='StoreID%202',WayBillNbr='WayBillNbr%202')/UPCs"
+		}
+	}
+}, {
+	"PONbr": "PONbr 3",
+	"ItemID": "ItemID 3",
+	"Article": "Article 3",
+	"ArticleDescription": "ArticleDescription 3",
+	"POQty": 9462.44,
+	"OpenQty": 3739.31,
+	"AsnQty": 677.14,
+	"RecQty": 1271.01,
+	"BaseUnit": "BaseUnit 3",
+	"UPC": "UPC 3",
+	"StoreID": "StoreID 3",
+	"WayBillNbr": "WayBillNbr 3",
+	"ItemStatus": "ItemStatus 3",
+	"SortIndicator": "SortIndicator 3",
+	"Location": "Location 3",
+	"SpecialOrder": "SpecialOrder 3",
+	"Seal": "Seal 3",
+	"__metadata": {
+		"uri": "POItemSet(PONbr='PONbr%203',ItemID='ItemID%203',StoreID='StoreID%203',WayBillNbr='WayBillNbr%203')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.POItem"
+	},
+	"UPCs": {
+		"__deferred": {
+			"uri": "POItemSet(PONbr='PONbr%203',ItemID='ItemID%203',StoreID='StoreID%203',WayBillNbr='WayBillNbr%203')/UPCs"
+		}
+	}
+}, {
+	"PONbr": "PONbr 4",
+	"ItemID": "ItemID 4",
+	"Article": "Article 4",
+	"ArticleDescription": "ArticleDescription 4",
+	"POQty": 7555.5,
+	"OpenQty": 7915.37,
+	"AsnQty": 9960.53,
+	"RecQty": 670.72,
+	"BaseUnit": "BaseUnit 4",
+	"UPC": "UPC 4",
+	"StoreID": "StoreID 4",
+	"WayBillNbr": "WayBillNbr 4",
+	"ItemStatus": "ItemStatus 4",
+	"SortIndicator": "SortIndicator 4",
+	"Location": "Location 4",
+	"SpecialOrder": "SpecialOrder 4",
+	"Seal": "Seal 4",
+	"__metadata": {
+		"uri": "POItemSet(PONbr='PONbr%204',ItemID='ItemID%204',StoreID='StoreID%204',WayBillNbr='WayBillNbr%204')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.POItem"
+	},
+	"UPCs": {
+		"__deferred": {
+			"uri": "POItemSet(PONbr='PONbr%204',ItemID='ItemID%204',StoreID='StoreID%204',WayBillNbr='WayBillNbr%204')/UPCs"
+		}
+	}
+}, {
+	"PONbr": "PONbr 5",
+	"ItemID": "ItemID 5",
+	"Article": "Article 5",
+	"ArticleDescription": "ArticleDescription 5",
+	"POQty": 243.67,
+	"OpenQty": 1553.78,
+	"AsnQty": 266.6,
+	"RecQty": 3609.2,
+	"BaseUnit": "BaseUnit 5",
+	"UPC": "UPC 5",
+	"StoreID": "StoreID 5",
+	"WayBillNbr": "WayBillNbr 5",
+	"ItemStatus": "ItemStatus 5",
+	"SortIndicator": "SortIndicator 5",
+	"Location": "Location 5",
+	"SpecialOrder": "SpecialOrder 5",
+	"Seal": "Seal 5",
+	"__metadata": {
+		"uri": "POItemSet(PONbr='PONbr%205',ItemID='ItemID%205',StoreID='StoreID%205',WayBillNbr='WayBillNbr%205')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.POItem"
+	},
+	"UPCs": {
+		"__deferred": {
+			"uri": "POItemSet(PONbr='PONbr%205',ItemID='ItemID%205',StoreID='StoreID%205',WayBillNbr='WayBillNbr%205')/UPCs"
+		}
+	}
+}, {
+	"PONbr": "PONbr 6",
+	"ItemID": "ItemID 6",
+	"Article": "Article 6",
+	"ArticleDescription": "ArticleDescription 6",
+	"POQty": 1467.49,
+	"OpenQty": 4255.18,
+	"AsnQty": 1149.02,
+	"RecQty": 1575.2,
+	"BaseUnit": "BaseUnit 6",
+	"UPC": "UPC 6",
+	"StoreID": "StoreID 6",
+	"WayBillNbr": "WayBillNbr 6",
+	"ItemStatus": "ItemStatus 6",
+	"SortIndicator": "SortIndicator 6",
+	"Location": "Location 6",
+	"SpecialOrder": "SpecialOrder 6",
+	"Seal": "Seal 6",
+	"__metadata": {
+		"uri": "POItemSet(PONbr='PONbr%206',ItemID='ItemID%206',StoreID='StoreID%206',WayBillNbr='WayBillNbr%206')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.POItem"
+	},
+	"UPCs": {
+		"__deferred": {
+			"uri": "POItemSet(PONbr='PONbr%206',ItemID='ItemID%206',StoreID='StoreID%206',WayBillNbr='WayBillNbr%206')/UPCs"
+		}
+	}
+}, {
+	"PONbr": "PONbr 7",
+	"ItemID": "ItemID 7",
+	"Article": "Article 7",
+	"ArticleDescription": "ArticleDescription 7",
+	"POQty": 8697.63,
+	"OpenQty": 8857.49,
+	"AsnQty": 560.93,
+	"RecQty": 1876.26,
+	"BaseUnit": "BaseUnit 7",
+	"UPC": "UPC 7",
+	"StoreID": "StoreID 7",
+	"WayBillNbr": "WayBillNbr 7",
+	"ItemStatus": "ItemStatus 7",
+	"SortIndicator": "SortIndicator 7",
+	"Location": "Location 7",
+	"SpecialOrder": "SpecialOrder 7",
+	"Seal": "Seal 7",
+	"__metadata": {
+		"uri": "POItemSet(PONbr='PONbr%207',ItemID='ItemID%207',StoreID='StoreID%207',WayBillNbr='WayBillNbr%207')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.POItem"
+	},
+	"UPCs": {
+		"__deferred": {
+			"uri": "POItemSet(PONbr='PONbr%207',ItemID='ItemID%207',StoreID='StoreID%207',WayBillNbr='WayBillNbr%207')/UPCs"
+		}
+	}
+}, {
+	"PONbr": "PONbr 8",
+	"ItemID": "ItemID 8",
+	"Article": "Article 8",
+	"ArticleDescription": "ArticleDescription 8",
+	"POQty": 9280.53,
+	"OpenQty": 2112.18,
+	"AsnQty": 3670.06,
+	"RecQty": 8686.88,
+	"BaseUnit": "BaseUnit 8",
+	"UPC": "UPC 8",
+	"StoreID": "StoreID 8",
+	"WayBillNbr": "WayBillNbr 8",
+	"ItemStatus": "ItemStatus 8",
+	"SortIndicator": "SortIndicator 8",
+	"Location": "Location 8",
+	"SpecialOrder": "SpecialOrder 8",
+	"Seal": "Seal 8",
+	"__metadata": {
+		"uri": "POItemSet(PONbr='PONbr%208',ItemID='ItemID%208',StoreID='StoreID%208',WayBillNbr='WayBillNbr%208')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.POItem"
+	},
+	"UPCs": {
+		"__deferred": {
+			"uri": "POItemSet(PONbr='PONbr%208',ItemID='ItemID%208',StoreID='StoreID%208',WayBillNbr='WayBillNbr%208')/UPCs"
+		}
+	}
+}, {
+	"PONbr": "PONbr 9",
+	"ItemID": "ItemID 9",
+	"Article": "Article 9",
+	"ArticleDescription": "ArticleDescription 9",
+	"POQty": 5929.1,
+	"OpenQty": 90.96,
+	"AsnQty": 5411.3,
+	"RecQty": 1847.34,
+	"BaseUnit": "BaseUnit 9",
+	"UPC": "UPC 9",
+	"StoreID": "StoreID 9",
+	"WayBillNbr": "WayBillNbr 9",
+	"ItemStatus": "ItemStatus 9",
+	"SortIndicator": "SortIndicator 9",
+	"Location": "Location 9",
+	"SpecialOrder": "SpecialOrder 9",
+	"Seal": "Seal 9",
+	"__metadata": {
+		"uri": "POItemSet(PONbr='PONbr%209',ItemID='ItemID%209',StoreID='StoreID%209',WayBillNbr='WayBillNbr%209')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.POItem"
+	},
+	"UPCs": {
+		"__deferred": {
+			"uri": "POItemSet(PONbr='PONbr%209',ItemID='ItemID%209',StoreID='StoreID%209',WayBillNbr='WayBillNbr%209')/UPCs"
+		}
+	}
+}, {
+	"PONbr": "PONbr 10",
+	"ItemID": "ItemID 10",
+	"Article": "Article 10",
+	"ArticleDescription": "ArticleDescription 10",
+	"POQty": 8624.24,
+	"OpenQty": 5806.13,
+	"AsnQty": 9717.14,
+	"RecQty": 9396.18,
+	"BaseUnit": "BaseUnit 10",
+	"UPC": "UPC 10",
+	"StoreID": "StoreID 10",
+	"WayBillNbr": "WayBillNbr 10",
+	"ItemStatus": "ItemStatus 10",
+	"SortIndicator": "SortIndicator 10",
+	"Location": "Location 10",
+	"SpecialOrder": "SpecialOrder 10",
+	"Seal": "Seal 10",
+	"__metadata": {
+		"uri": "POItemSet(PONbr='PONbr%2010',ItemID='ItemID%2010',StoreID='StoreID%2010',WayBillNbr='WayBillNbr%2010')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.POItem"
+	},
+	"UPCs": {
+		"__deferred": {
+			"uri": "POItemSet(PONbr='PONbr%2010',ItemID='ItemID%2010',StoreID='StoreID%2010',WayBillNbr='WayBillNbr%2010')/UPCs"
+		}
+	}
+}]

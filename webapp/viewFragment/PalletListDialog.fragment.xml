@@ -1,0 +1,157 @@
+<core:FragmentDefinition
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m" >
+	<Dialog
+		id="idPalletListDialog"
+		draggable="true"
+		title="{i18n>PalletListDialog_Title}"
+		beforeOpen="onPalletListDialogOpen" >
+		<!--
+		<customHeader>
+			<Toolbar>
+				<SegmentedButton selectedKey="pallets">
+					<items>
+						<SegmentedButtonItem 
+							icon="sap-icon://along-stacked-chart"
+							text="Pallets"
+							key="pallets" />
+						<SegmentedButtonItem
+							icon="sap-icon://product"
+							text="Articles"
+							key="articles" />
+					</items>
+				</SegmentedButton>
+				<Button
+					icon="sap-icon://search"
+					key="lookup"/>
+			</Toolbar>
+		</customHeader>
+		-->
+		<content>
+
+			<List
+				id="idPalletListDialogList"
+				noDataText="{i18n>PalletListDialog_NoData}"
+				mode="SingleSelectMaster"
+				inset="false"
+				selectionChange="onPalletListDialogSelect"
+				items="{
+					path: '/data/RGRPallets/',
+					templateShareable : false,
+					sorter: [{
+						path: 'SortIndicator',
+						descending: false,
+						group: false
+					},{
+						path: 'PalletID',
+						descending: false,
+						group: false
+					}]
+				}" >
+
+				<items
+					busyIndicatorDelay="0" >
+					<CustomListItem id="idPalletListDialogListItem" >
+						<customData>
+							<core:CustomData
+								key="PalletListDialog_Pallet"
+								value="'StoreID':'{StoreID}','WayBillNbr':'{WayBillNbr}','Pallet':'{PalletID}'"
+								writeToDom="true" />
+						</customData>
+						<content>
+							<HBox
+								width="auto"
+								class="sapUiTinyMargin" >
+								<FlexBox
+									width="3em"
+									justifyContent="SpaceAround"
+									alignItems="Center"
+									wrap="NoWrap" >
+									<items>
+										<Button
+											id="idPalletListDialogItemPalletsLeft"
+											type="{= ${PalletStatus} === 'R' ? 'Reject' : ${PalletStatus} === 'X' ? 'Accept' : 'Transparent'}"
+											icon="{= ${PalletStatus} === 'X' ? 'sap-icon://sys-enter-2' : ${PalletStatus} === 'N' ? 'sap-icon://sys-minus' : 'sap-icon://message-warning' }"
+											press="onPalletListDialogSelect" >
+											<layoutData>
+												<FlexItemData alignSelf="Start" />
+												<FlexItemData growFactor="1" />
+											</layoutData>
+											<customData>
+												<core:CustomData
+													key="PalletListDialogItemStatusBtn"
+													value="{PalletID}"
+													writeToDom="true" />
+											</customData>
+										</Button>
+									</items>
+								</FlexBox>
+								<FlexBox
+									widht="auto"
+									justifyContent="SpaceAround"
+									alignItems="Center"
+									wrap="Wrap" >
+									<items>
+										<VBox>
+											<layoutData>
+												<FlexItemData alignSelf="End" />
+												<FlexItemData growFactor="2" />
+											</layoutData>
+											<Title
+												text="{
+													path : 'PalletID',
+													formatter : '.formatter.removeLeadingZeros'
+												}" >
+											</Title>
+											<Label
+												text="{POCount} {i18n>Pallet_PoCountLabel}" />
+											<Label
+												text="{ItemCount} {i18n>Pallet_ArticleCountLabel}" />
+										</VBox>
+									</items>
+								</FlexBox>
+								<FlexBox
+									width="3em"
+									justifyContent="SpaceBetween"
+									alignItems="Center"
+									wrap="NoWrap"
+									visible="{
+										parts: ['StoreID','WayBillNbr','PalletID','X','X','X'],
+										formatter: '.formatter.exceptionBtnVisible'
+									}" >
+									<items>
+										<Button
+											type="{
+												parts: ['StoreID','WayBillNbr','PalletID','X','X','X'],
+												formatter: '.formatter.exceptionBtnType'
+											}"
+											icon="sap-icon://message-popup"
+											tooltip="{i18n>PalletListDialog_ReportIssueBtn}" >
+											<customData>
+												<core:CustomData
+													key="PalletListDialog_ReportIssueBtn"
+													value="'StoreID':'{StoreID}','WayBillNbr':'{WayBillNbr}','PalleID':'{PalletID}'"
+													writeToDom="true" />
+											</customData>
+											<layoutData>
+												<FlexItemData alignSelf="End" />
+												<FlexItemData growFactor="1" />
+											</layoutData>
+										</Button>
+									</items>
+								</FlexBox>
+							</HBox>
+						</content>
+					</CustomListItem>
+				</items>
+			</List>
+		</content>
+
+		<buttons>
+			<Button
+				text="{i18n>PalletListDialog_ButtonClose}"
+				press="onPalletListDialogButtonClose" />
+		</buttons>
+
+	</Dialog>
+</core:FragmentDefinition>

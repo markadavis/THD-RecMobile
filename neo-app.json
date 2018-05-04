@@ -1,0 +1,58 @@
+{
+  "welcomeFile": "/webapp/index.html",
+  "routes": [
+    {
+      "path": "/webapp/resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/resources"
+      },
+      "description": "SAPUI5 Resources"
+    },
+    {
+      "path": "/resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/resources"
+      },
+      "description": "SAPUI5 Resources"
+    },
+    {
+      "path": "/sap/bc/ui5_ui5/sap/ydsdrecmstr",
+      "target": {
+        "type": "destination",
+        "name": "DEV_GATEWAY",
+        "entryPath": "/sap/bc/ui5_ui5/sap/ydsdrecmstr"
+      },
+      "description": "THD Canada Dev Gateway OData Services"
+    },
+    {
+      "path": "/sap/opu/odata",
+      "target": {
+        "type": "destination",
+        "name": "DEV_GATEWAY",
+        "entryPath": "/sap/opu/odata"
+      },
+      "description": "THD Canada Dev Gateway OData Services"
+    }
+  ],
+  "sendWelcomeFileRedirect": true,
+  "cacheControl": [
+    {
+      "directive": "private",
+      "maxAge": 0,
+      "path": "**.html"
+    },
+    {
+      "directive": "private",
+      "maxAge": 0,
+      "path": "sap-ui-cachebuster-info.json"
+    },
+    {
+      "directive": "public",
+      "maxAge": 31536000
+    }
+  ]
+}

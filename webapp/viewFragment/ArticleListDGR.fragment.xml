@@ -1,0 +1,215 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout"
+	xmlns="sap.m" >
+	<VBox
+		id="idWaybillPageArticleDGR" >
+
+		<!-- Article List Toolbar -->
+		<Toolbar
+			id="idWaybillPageArticleDGRToolbar"
+			width="100%"
+			design="Solid" >
+			<content>
+				<Button
+					icon="sap-icon://add"
+					press="onClickAddArticle" >
+					<customData>
+						<core:CustomData
+							key="WayBillDetail_BtnAddArticle"
+							value="'StoreID':'{StoreID}','WayBillNbr':'{WayBillNbr}','PalletID':'{PalletID}',PONbr':'{PONbr}', 'ItemID':'{ItemID}'"
+							writeToDom="true" />
+					</customData>
+				</Button>
+				<SearchField
+					width="100%"
+					placeholder="{i18n>Article_PlaceholderSearch}"
+					search="onFilter" />
+				<Button
+					icon="sap-icon://bar-code"
+					visible="{= ${appView>/settings/hasCameraScanner} ? true : false }"
+					press="onCameraScanner" />
+			</content>
+		</Toolbar>
+
+		<!-- List of Un-Received Articles -->
+		<ScrollContainer
+			id="idWaybillPageArticleDGRScroller"
+			vertical="true" >
+			<List
+				id="idWaybillPageArticleDGRList"
+				mode="SingleSelectMaster"
+				inset="false"
+				updateFinished="onListUpdate"
+				selectionChange="onSelect"
+				items="{
+					path: 'headerView>/data/DGRArticles/',
+					templateShareable : false,
+					sorter: [{
+						path: 'Article',
+						descending: false,
+						group: false
+					}]
+				}" >
+				<items>
+
+					<CustomListItem
+						busyIndicatorDelay="0"
+						busy="{headerView>isBusy}" >
+						<customData>
+							<core:CustomData
+								key="PalletDetail_Article"
+								value="'StoreID':'{headerView>StoreID}','WayBillNbr':'{headerView>WayBillNbr}','PalletID':'{headerView>PalletID}','PONbr':'{headerView>PONbr}','ItemID':'{headerView>ItemID}'"
+								writeToDom="true" />
+						</customData>
+						<content>
+							<VBox class="sapUiTinyMargin" >
+								<FlexBox
+									justifyContent="Start"
+									alignItems="Start"
+									wrap="NoWrap" >
+									<items>
+										<!--
+										<Link
+											emphasized="true"
+											width="6.5em"
+											press="onArticleLink"
+											tooltip="{i81n>ArticleListDialog_LinkToALU}"
+											text="{
+												path : 'headerView>Article',
+												formatter : '.formatter.removeLeadingZeros'
+											}" />
+										-->
+										<VBox>
+											<Title
+												level="H2"
+												width="6.5em"
+												tooltip="{i18n>ArticleListDialog_TooltipPO} {PONbr}"
+												text="{
+													path : 'headerView>Article',
+													formatter : '.formatter.removeLeadingZeros'
+												}" />
+											<Label
+												width="18em"
+												tooltip="{i18n>ArticleListDialog_TooltipPO} {PONbr}"
+												text="{headerView>ArticleDescription}" />
+										</VBox>
+									</items>
+								</FlexBox>
+								<FlexBox
+									tooltip="{i18n>ArticleListDialog_TooltipPO} {PONbr}"
+									justifyContent="SpaceBetween"
+									alignItems="Center"
+									wrap="Wrap" >
+									<items>
+										<Button
+											type="{= ${headerView>ItemStatus} === 'R' ? 'Reject' : ${headerView>ItemStatus} === 'X' ? 'Accept' : 'Transparent'}"
+											icon="{= ${headerView>ItemStatus} === 'X' ? 'sap-icon://sys-enter-2' : ${headerView>ItemStatus} === 'N' ? 'sap-icon://sys-minus' : 'sap-icon://message-warning' }"
+											press="onArticleListDialogSelect" >
+											<layoutData>
+												<FlexItemData alignSelf="Start" />
+												<FlexItemData growFactor="1" />
+											</layoutData>
+											<customData>
+												<core:CustomData
+													key="ArticleListDialogItemStatusBtn"
+													value="'StoreID':'{headerView>StoreID}','WayBillNbr':'{headerView>WayBillNbr}','PalletID':'{headerView>PalletID}',PONbr':'{headerView>PONbr}','ItemID':'{headerView>ItemID}'"
+													writeToDom="true" />
+											</customData>
+										</Button>
+										<VBox>
+											<layoutData>
+												<FlexItemData alignSelf="Start" />
+												<FlexItemData growFactor="4" />
+											</layoutData>
+											<Label
+												text="{i18n>ArticleListDialog_OpenLabel} {headerView>OpenQty}" />
+											<Label
+												text="{i18n>ArticleListDialog_ASNLabel} {headerView>AsnQty}" />
+											<Label
+												text="{i18n>ArticleListDialog_UOMLabel} {headerView>BaseUnit}" />
+										</VBox>
+										<Button
+											id="idArticleListDialogItem_ReportIssueBtn"
+											type="{
+												parts: ['headerView>StoreID','headerView>WayBillNbr','headerView>PalletID','headerView>PONbr','headerView>ItemID'],
+												formatter: '.formatter.exceptionBtnType'
+											}"
+											icon="sap-icon://message-popup"
+											tooltip="{i18n>PalletListDialog_ReportIssueBtn}"
+											visible="{
+												parts: ['headerView>StoreID','headerView>WayBillNbr','headerView>PalletID','headerView>PONbr','headerView>ItemID'],
+												formatter: '.formatter.exceptionBtnVisible'
+											}" >
+											<customData>
+												<core:CustomData
+													key="ArticleListDialogItemReportIssue"
+													value="'StoreID':'{headerView>StoreID}','WayBillNbr':'{headerView>WayBillNbr}','PalletID':'{headerView>PalletID}','PONbr':'{headerView>PONbr}','ItemID':'{headerView>ItemID}'"
+													writeToDom="true" />
+											</customData>
+											<layoutData>
+												<FlexItemData alignSelf="End" />
+												<FlexItemData growFactor="1" />
+											</layoutData>
+										</Button>
+									</items>
+								</FlexBox>
+								<FlexBox
+									visible="{= ${headerView>SpecialOrder} === 'X' ? true : false }"
+									tooltip="{i18n>ArticleListDialog_TooltipPO} {headerView>PONbr}"
+									justifyContent="Start"
+									alignItems="End"
+									wrap="Wrap" >
+									<items>
+										<VBox>
+											<layoutData>
+												<FlexItemData alignSelf="End" />
+												<FlexItemData growFactor="3" />
+											</layoutData>
+											<ObjectStatus
+												text="{i18n>ArticleListDialog_SpecialOrder}"
+												state="Error" />
+											<Label
+												text="{i18n>ArticleListDialog_BinLocation}" />
+										</VBox>
+										<HBox>
+											<layoutData>
+												<FlexItemData alignSelf="Center" />
+												<FlexItemData growFactor="2" />
+											</layoutData>
+											<Input
+												id="idWayBillDetail_ArticleListItemInputBay"
+												enabled="{= ${headerView>ItemStatus} === 'X' ? false : true }"
+												width="8em"
+												maxLength="10"
+												value="{headerView>Location}" />
+											<Button
+												id="idArticleListDialogItem_PrintBtn"
+												enabled="{= ${ItemStatus} === 'X' ? true : true }"
+												icon="sap-icon://print"
+												press="onPrintBtn" >
+												<customData>
+													<core:CustomData
+														key="ArticleListDialogItem_PrinBtnt"
+														value="'StoreID':'{headerView>StoreID}','WayBillNbr':'{headerView>WayBillNbr}','PalletID':'{headerView>PalletID}','PONbr':'{headerView>PONbr}','ItemID':'{headerView>ItemID}'"
+														writeToDom="true" />
+												</customData>
+											</Button>
+										</HBox>
+										<HBox>
+											<layoutData>
+												<FlexItemData alignSelf="Center" />
+												<FlexItemData growFactor="1" />
+											</layoutData>
+										</HBox>
+									</items>
+								</FlexBox>
+							</VBox>
+						</content>
+					</CustomListItem>
+
+				</items>
+			</List>
+		</ScrollContainer>
+
+	</VBox>
+</core:FragmentDefinition>

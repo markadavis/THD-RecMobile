@@ -1,0 +1,9 @@
+<mvc:View controllerName="thd.recmobile.controller.App"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" >
+	<App
+		id="idAppControl"
+		busyIndicatorDelay="{appView>/settings/delay}"
+		busy="{appView>/settings.busy}" >
+	</App>
+</mvc:View>

@@ -1,0 +1,114 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout"
+	xmlns="sap.m" >
+	<Dialog
+		id="idArticleDialog"
+		draggable="true"
+		title="{i18n>ArticleDialog_HeaderTitle} {Article}"
+		beforeOpen="onArticleDialogOpen" >
+		<subHeader>
+			<Toolbar
+				design="Solid"
+				visible="{= ${ItemStatus} === 'N' ? false : true }" >
+				<ToolbarSpacer />
+				<Button
+					icon="sap-icon://message-popup"
+					type="{
+						parts: ['StoreID','WayBillNbr','X','X','X','X'],
+						formatter: '.formatter.exceptionBtnType'
+					}"
+					text="{i18n>ArticleDialog_HeaderToolbarIssues}"
+					press="onArticleDialogIssues" >
+					<customData>
+						<core:CustomData
+							key="DetailHeaderPanel_BtnReport"
+							value="'StoreID':'{StoreID}','WayBillNbr':'{WayBillNbr}'"
+							writeToDom="true" />
+					</customData>
+				</Button>
+			</Toolbar>
+		</subHeader>
+		<content>
+			<form:SimpleForm
+				editable="{palletView>/settings/editable}">
+
+				<Toolbar
+					design="Transparent" >
+					<Button
+						type="{= ${ItemStatus} === 'X' ? 'Accept' : ${ItemStatus} === 'N' ? 'Emphasized' : 'Reject'}"
+						icon="{= ${ItemStatus} === 'X' ? 'sap-icon://sys-enter-2' : ${ItemStatus} === 'N' ? 'sap-icon://sys-minus' : 'sap-icon://message-warning' }" >
+						<layoutData>
+							<FlexItemData alignSelf="Start" />
+							<FlexItemData growFactor="1" />
+						</layoutData>
+					</Button>
+					<Title
+						width="100%"
+						text="{
+							path: 'ItemStatus',
+							formatter: '.formatter.statusText'
+						}" />
+				</Toolbar>
+
+				<Label
+					design="Bold"
+					text="{ArticleDescription}" />
+				<VBox>
+					<Label
+						text="{i18n>ArticleDialog_Open} {OpenQty}" />
+					<Label
+						text="{i18n>ArticleDialog_Expected} {AsnQty}" />
+					<Label
+						text="{i18n>ArticleDialog_BaseUnit} {BaseUnit}" />
+				</VBox>
+
+				<Label
+					visible="{= ${ItemStatus} === 'X' ? false : true }"
+					text="{i18n>ArticleDialog_QtyEntered}" />
+				<HBox>
+					<Input
+						visible="{= ${ItemStatus} === 'X' ? false : true }"
+						value="{RecQty}" />
+					<Text />
+					<Text />
+				</HBox>
+
+				<Label
+					text="{i18n>ArticleDialog_BayLocation}" />
+				<HBox
+					visible="{= ${SpecialOrder} === 'X' ? true : false }">
+					<Input
+						enabled="{= ${ItemStatus} === 'X' ? false : true }"
+						width="8em"
+						maxLength="10"
+						value="{Location}" />
+					<Button
+						enabled="{= ${ItemStatus} === 'X' ? true : true }"
+						icon="sap-icon://print"
+						press="onArticleDialogSpecialOrderPrint" >
+						<customData>
+							<core:CustomData
+								key="DetailHeaderPanel_PrintSpecialOrderBtn"
+								value="'StoreID':'{StoreID}','WayBillNbr':'{WayBillNbr}','PalletID':'{PalletID}','PONbr':'{PONbr}','ItemID':'{ItemID}','Article':'{Article}'"
+								writeToDom="true" />
+						</customData>
+					</Button>
+				</HBox>
+
+			</form:SimpleForm>
+		</content>
+		<buttons>
+			<Button
+				type="Accept"
+				visible="{= ${ItemStatus} === 'R' ? true : false }"
+				enabled="{palletView>/settings/editable}"
+				text="{i18n>ArticleDialog_HeaderToolbarDGR}"
+				press="onArticleDialogDGR" />
+			<Button
+				type="{= ${ItemStatus} === 'R' ? 'Reject' : 'Default' }"
+				text="{= ${ItemStatus} === 'R' ? ${i18n>ArticleDialog_ButtonCancel} : ${i18n>ArticleDialog_ButtonClose} }"
+				press="onArticleDialogClose" />
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

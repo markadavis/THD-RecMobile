@@ -1,0 +1,313 @@
+<core:View controllerName="thd.recmobile.controller.Pallet"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m" >
+
+	<Page
+		id="idPalletPage"
+		title="{i18n>PalletPageTitle} {palletView>/data/Pallet/PalletID}"
+		showNavButton="true"
+		navButtonPress="onNavButtonPress" >
+		<content>
+
+			<Panel
+				id="idPalletPanel"
+				backgroundDesign="Solid"
+				expandable="true"
+				expanded="true"
+				expand="onDetailHeaderExpand" >
+ 
+				<headerToolbar>
+					<Toolbar>
+						<Button
+							type="{= ${palletView>/data/Pallet/PalletStatus} === 'X' ? 'Accept' : ${palletView>/data/Pallet/PalletStatus} === 'N' ? 'Emphasized' : 'Reject'}"
+							icon="{= ${palletView>/data/Pallet/PalletStatus} === 'X' ? 'sap-icon://sys-enter-2' : ${palletView>/data/Pallet/PalletStatus} === 'N' ? 'sap-icon://sys-minus' : 'sap-icon://message-warning' }"
+							press="onDetailHeaderExpand" >
+							<layoutData>
+								<FlexItemData alignSelf="Start" />
+								<FlexItemData growFactor="1" />
+							</layoutData>
+						</Button>
+						<Button
+							type="Transparent"
+							iconFirst="false"
+							text="{
+								path: 'palletView>/data/Pallet/PalletStatus',
+								formatter: '.formatter.statusText'
+							}"
+							press="onDetailHeaderExpand" />
+					</Toolbar>
+				</headerToolbar>
+
+				<infoToolbar>
+					<Toolbar
+						design="Solid"
+						visible="{= ${palletView>/data/Pallet/PalletStatus} === 'N' ? false : true }" >
+						<ToolbarSpacer />
+						<Button
+							icon="sap-icon://message-popup"
+							type="{
+								parts: ['palletView>/data/Pallet/StoreID','palletView>/data/Pallet/WayBillNbr','X','X','X','X'],
+								formatter: '.formatter.exceptionBtnType'
+							}"
+							text="{i18n>PalletPanel_ToolbarReportIssueBtn}"
+							press="onReportIssue" >
+							<customData>
+								<core:CustomData
+									key="DetailHeaderPanel_BtnReport"
+									value="'StoreID':'{palletView>/data/Pallet/StoreID}','WayBillNbr':'{palletView>/data/Pallet/WayBillNbr}','PalletID':'{palletView/data/Pallet/PalletID}'"
+									writeToDom="true" />
+							</customData>
+						</Button>
+					</Toolbar>
+				</infoToolbar>
+
+				<ObjectHeader
+					id="idDetailHeader_mobile"
+					visible="{= ${device>/system/phone} ? true : false}"
+					responsive="true"
+					fullScreenOptimized="false"
+					backgroundDesign="Solid"
+					title="{i18n>PalletPanel_HeaderIntro} {palletView>/data/Pallet/WayBillNbr}"
+					intro="{i18n>PalletPanel_HeaderLabelPOCount} {palletView>/data/Pallet/POCount}"
+					number="{palletView>/data/Pallet/ItemCount}"
+					numberUnit="{= parseInt(${palletView>/data/Pallet/PalletCount}) === 1 ? ${i18n>PalletHeader_PalletUnit} : ${i18n>PalletHeader_PalletUnits} }" >
+					<statuses>
+						<ObjectStatus
+							title="{i18n>PalletHeader_ExceptionsLbl}"
+							text="{= ${palletView>/data/IssueCount} === 0 ? ${i18n>PalletHeader_NoExceptions} : ${palletView>/data/IssueCount} }"
+							state="{= ${palletView>/data/IssueCount} === 0 ? 'Success' : 'Error' }" />
+					</statuses>
+					<attributes>
+						<ObjectAttribute
+							title="{i18n>PalletPanel_HeaderLabelTrailerNbr}"
+							text="{palletView>/data/Pallet/TrailerNbr}" />
+						<ObjectAttribute
+							title="{i18n>PalletPanel_HeaderLabelCarrierCode}"
+							text="{palletView>/data/Pallet/CarrierCode}" />
+						<!--
+						<ObjectAttribute
+							title="{i18n>PalletPanel_HeaderLabelPOCount}"
+							text="{palletView>/data/Pallet/POCount}" />
+						-->
+					</attributes>
+				</ObjectHeader>
+			</Panel>
+
+			<VBox
+				id="idPalletPageArticles"
+				busyIndicatorDelay="{palletView>/settings/delay}"
+				busy="{palletView>/settings/busy}" >
+
+				<Toolbar
+					id="idPalletToolbar"
+					width="100%"
+					design="Solid"
+					visible="{= ${palletView>/data/Pallet/PalletStatus} === 'N' ? false : true }" >
+					<content>
+						<Button
+							id="iPalletToolbarButtonAllPalletS"
+							icon="sap-icon://group-2"
+							tooltip="{i18n>PalletToolbar_TootipShowAll}"
+							press="onShowAll" />
+						<SearchField
+							id="idPalletToolbarSearch"
+							width="100%"
+							placeholder="{i18n>PalletToolbar_PlaceholderSearch}"
+							search="onSearch" />
+						<Button
+							icon="sap-icon://bar-code"
+							visible="{= ${appView>/settings/hasCameraScanner} ? true : false }"
+							press="onCameraScanner" />
+					</content>
+				</Toolbar>
+	
+				<!-- Start of Scroll Container -->
+				<ScrollContainer
+					id="idPalletListScroller"
+					vertical="true"
+					visible="{= ${palletView>/data/Pallet/PalletStatus} === 'N' ? false : true }" >
+					<!-- List of Un-Received Articles -->
+					<List
+						id="idPalletList"
+						headerText="{i18n>PalletList_ListHeader}"
+						noDataText="{i18n>PalletList_PendingNoArticles}"
+						mode="SingleSelectMaster"
+						inset="false"
+						selectionChange="onSelect"
+						updateFinished="onUpdateFinished"
+						items="{
+							path: 'palletView>/data/DGRArticles/',
+							templateShareable : false,
+							sorter: [{
+								path: 'PalletID',
+								descending: false,
+								group: false
+							}]
+						}" >
+						<items
+							busyIndicatorDelay="0" >
+	
+							<CustomListItem
+								id="idPalletListItem"
+								busyIndicatorDelay="0"
+								busy="{palletView>isBusy}" >
+								<customData>
+									<core:CustomData
+										key="PalletListItem"
+										value="'StoreID':'{palletView>StoreID}','WayBillNbr':'{palletView>WayBillNbr}','Pallet':'{palletView>Pallet}','PONbr':'{palletView>PONbr}','ItemID':'{palletView>ItemID}','Article':'{palletView>Article}'"
+										writeToDom="true" />
+								</customData>
+								<content>
+									<VBox class="sapUiTinyMargin" >
+										<FlexBox
+											justifyContent="Start"
+											alignItems="Start"
+											wrap="NoWrap" >
+											<items>
+												<!--
+												<Link
+													emphasized="true"
+													width="6.5em"
+													press="onArticleLink"
+													tooltip="{Article_LinkToALU}"
+													text="{
+														path : 'Article',
+														formatter : '.formatter.removeLeadingZeros'
+													}" />
+												-->
+												<Title
+													level="H2"
+													width="6.5em"
+													tooltip="{i18n>PalletListDialog_TooltipPO} {PONbr}"
+													text="{
+														path : 'palletView>Article',
+														formatter : '.formatter.removeLeadingZeros'
+													}" />
+												<Label
+													width="18em"
+													tooltip="{i18n>PalletListDialog_TooltipPO} {PONbr}"
+													text="{palletView>ArticleDescription}" />
+											</items>
+										</FlexBox>
+										<FlexBox
+											tooltip="{i18n>PalletListDialog_TooltipPO} {PONbr}"
+											justifyContent="SpaceBetween"
+											alignItems="Center"
+											wrap="Wrap" >
+											<items>
+												<Button
+													type="{= ${palletView>ItemStatus} === 'R' ? 'Reject' : ${ItemStatus} === 'X' ? 'Accept' : 'Transparent'}"
+													icon="{= ${palletView>ItemStatus} === 'X' ? 'sap-icon://sys-enter-2' : ${palletView>ItemStatus} === 'N' ? 'sap-icon://sys-minus' : 'sap-icon://message-warning' }"
+													press="onSelect" >
+													<layoutData>
+														<FlexItemData alignSelf="Start" />
+														<FlexItemData growFactor="1" />
+													</layoutData>
+													<customData>
+														<core:CustomData
+															key="PalletListItem_StatusBtn"
+															value="'PONbr':'{palletView>PONbr}','ItemID': '{palletView>ItemID}'"
+															writeToDom="true" />
+													</customData>
+												</Button>
+												<VBox>
+													<layoutData>
+														<FlexItemData alignSelf="Start" />
+														<FlexItemData growFactor="4" />
+													</layoutData>
+													<Label
+														text="{i18n>PalletListDialog_OpenLabel} {palletView>OpenQty}" />
+													<Label
+														text="{i18n>PalletListDialog_ASNLabel} {palletView>AsnQty}" />
+													<Label
+														text="{i18n>PalletListDialog_UOMLabel} {palletView>BaseUnit}" />
+												</VBox>
+												<Button
+													id="idPalletListItem_ReportIssueBtn"
+													type="{
+														parts: ['palletView>StoreID','palletView>WayBillNbr','palletView>PalletID','palletView>PONbr','palletView>ItemID','palletView>Article'],
+														formatter: '.formatter.exceptionBtnType'
+													}"
+													icon="sap-icon://message-popup"
+													tooltip="{i18n>PalletListDialog_ReportIssueBtn}"
+													visible="{
+														parts: ['palletView>StoreID','palletView>WayBillNbr','palletView>PalletID','palletView>PONbr','palletView>ItemID','palletView>Article'],
+														formatter: '.formatter.exceptionBtnVisible'
+													}" >
+													<customData>
+														<core:CustomData
+															key="PalletListItem_ReportIssue"
+															value="'StoreID':'{palletView>StoreID}','WayBillNbr':'{palletView>WayBillNbr}','Pallet':'palletView>PalletID','PONbr':'{palletView>PONbr}','ItemID':'{palletView>ItemID}','Article':'{palletView>Article}'"
+															writeToDom="true" />
+													</customData>
+													<layoutData>
+														<FlexItemData alignSelf="End" />
+														<FlexItemData growFactor="1" />
+													</layoutData>
+												</Button>
+											</items>
+										</FlexBox>
+										<FlexBox
+											visible="{= ${SpecialOrder} === 'X' ? true : false }"
+											tooltip="{i18n>PalletListDialog_TooltipPO} {palletView>PONbr}"
+											justifyContent="Start"
+											alignItems="End"
+											wrap="Wrap" >
+											<items>
+												<VBox>
+													<layoutData>
+														<FlexItemData alignSelf="End" />
+														<FlexItemData growFactor="3" />
+													</layoutData>
+													<ObjectStatus
+														text="{i18n>PalletListDialog_SpecialOrder}"
+														state="Error" />
+													<Label
+														text="{i18n>PalletListDialog_BinLocation}" />
+												</VBox>
+												<HBox>
+													<layoutData>
+														<FlexItemData alignSelf="Center" />
+														<FlexItemData growFactor="2" />
+													</layoutData>
+													<Input
+														id="idPalletListItem_BayInput"
+														enabled="{= ${palletView>ItemStatus} === 'X' ? false : true }"
+														width="8em"
+														maxLength="10"
+														value="{palletView>Location}" />
+													<Button
+														id="idPalletListItem_PrintBtn"
+														enabled="{= ${palletView>ItemStatus} === 'X' ? true : true }"
+														icon="sap-icon://print"
+														press="onPrintBtn" >
+														<customData>
+															<core:CustomData
+																key="PalletListItem_PrinBtnt"
+																value="'StoreID':'{palletView>StoreID}','WayBillNbr':'{palletView>WayBillNbr}','Pallet':'{palletView>Pallet}','PONbr':'{palletView>PONbr}','ItemID':'{palletView>ItemID}','Article':'{palletView>Article}'"
+																writeToDom="true" />
+														</customData>
+													</Button>
+												</HBox>
+												<HBox>
+													<layoutData>
+														<FlexItemData alignSelf="Center" />
+														<FlexItemData growFactor="1" />
+													</layoutData>
+												</HBox>
+											</items>
+										</FlexBox>
+									</VBox>
+								</content>
+							</CustomListItem>
+	
+						</items>
+					</List>
+				</ScrollContainer>
+
+			</VBox>
+		</content>
+		<footer></footer>
+	</Page>
+
+</core:View>

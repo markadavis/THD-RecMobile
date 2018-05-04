@@ -1,0 +1,79 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout"
+	xmlns="sap.m" >
+	<Dialog
+		id="idPODialog"
+		draggable="true"
+		icon="{= ${POStatus} === 'X' ? 'sap-icon://sys-enter-2' : ${POStatus} === 'N' ? 'sap-icon://sys-minus' : 'sap-icon://message-warning' }"
+		title="{= ${POStatus} === 'N' ? ${i18n>PODialog_StatusNotAccepted} : ${POStatus} === 'R' ? ${i18n>PODialog_StatusDGR} : ${POStatus} === 'X' ? ${i18n>PODialog_StatusComplete} : ${i18n>PODialog_StatusUnknown} }"
+		beforeOpen="onPODialogOpen" >
+		<subHeader>
+			<Toolbar
+				design="Solid"
+				visible="{= ${POStatus} === 'N' ? false : true }" >
+				<Button
+					icon="sap-icon://group-2"
+					type="Default"
+					text="{i18n>PODialog_HeaderToolbarArticles}"
+					press="onAllArticles" />
+				<ToolbarSpacer />
+				<ToolbarSeparator visible="{= ${POStatus} === 'N' ? false : true }" />
+				<ToolbarSpacer />
+				<Button
+					icon="sap-icon://message-popup"
+					type="{
+						parts: ['StoreID','WayBillNbr','X','X','X','X'],
+						formatter: '.formatter.exceptionBtnType'
+					}"
+					text="{i18n>PODialog_HeaderToolbarIssues}"
+					press="onReportIssue" >
+					<customData>
+						<core:CustomData
+							key="DetailHeaderPanel_BtnReport"
+							value="'StoreID':'{StoreID}','WayBillNbr':'{WayBillNbr}'"
+							writeToDom="true" />
+					</customData>
+				</Button>
+			</Toolbar>
+		</subHeader>
+		<content>
+			<ObjectHeader
+				id="idPODialogHeader"
+				title="{i18n>PODialog_HeaderTitle} {PONbr}"
+				number="{ItemCount}"
+				numberUnit="{= parseInt(${ItemCount}) === 1 ? ${i18n>PODialog_HeaderUnit} : ${i18n>PODialog_HeaderUnits}}" >
+				<attributes id="PO_attributes">
+					<ObjectAttribute
+						title="{i18n>PODialog_VendorName}"
+						text="{VenName}" />
+					<ObjectAttribute
+						title="{i18n>PODialog_VendorNbr}"
+						text="{Vendor}" />
+					<ObjectAttribute
+						title="{i18n>PODialog_Certified}"
+						text="{= ${Certflg} === 'X' ? ${i18n>PODialog_Yes} : ${i18n>PODialog_No} }" />
+					<ObjectAttribute
+						title="{i18n>PODialog_DCPO}"
+						text="{= ${DcPo} === 'X' ? ${i18n>PODialog_Yes} : ${i18n>PODialog_No} }" />
+				</attributes>
+			</ObjectHeader>
+		</content>
+
+		<buttons>
+			<Button
+				type="Accept"
+				visible="{= ${POStatus} === 'R' ? true : false }"
+				text="{i18n>PODialog_HeaderToolbarDGR}"
+				press="onDGR" />
+			<Button
+				type="Accept"
+				visible="{= ${POStatus} === 'N' ? true : false }"
+				text="{i18n>PODialog_ButtonRGR}"
+				press="onPODialogRGR" />
+			<Button
+				type="{= ${POStatus} === 'N' ? 'Reject' : 'Default' }"
+				text="{= ${POStatus} === 'N' ? ${i18n>PODialog_ButtonCancel} : ${i18n>PODialog_ButtonClose} }"
+				press="onPODialogClose" />
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

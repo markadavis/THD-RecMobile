@@ -1,0 +1,104 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout"
+	xmlns="sap.m" >
+	<VBox
+		id="idWaybillPagePODGR" >
+
+		<!-- PO List Toolbar -->
+		<Toolbar
+			id="idWaybillPagePODGRToolbar"
+			width="100%"
+			design="Solid" >
+			<content>
+				<Button
+					icon="sap-icon://add"
+					press="onClickAddPO" >
+					<customData>
+						<core:CustomData
+							key="WayBillDetail_BtnAddPO"
+							value="'StoreID':'{StoreID}','WayBillNbr':'{WayBillNbr}','PONbr':''"
+							writeToDom="true" />
+					</customData>
+				</Button>
+				<SearchField
+					width="100%"
+					placeholder="{i18n>PO_PlaceholderSearch}"
+					search="onFilter" />
+				<Button
+					icon="sap-icon://bar-code"
+					visible="{= ${appView>/settings/hasCameraScanner} ? true : false }"
+					press="onCameraScanner" />
+			</content>
+		</Toolbar>
+
+		<!-- List of Un-Received POs -->
+		<ScrollContainer
+			id="idWaybillPagePODGRScroller"
+			vertical="true" >
+			<List
+				id="idWaybillPagePODGRList"
+				mode="SingleSelectMaster"
+				inset="false"
+				updateFinished="onListUpdate"
+				selectionChange="onSelect"
+				visible="{= ${waybillView>/data/Waybill/Seal} === 'X' ? false : true }"
+				items="{
+					path: 'waybillView>/data/DGRPOs/',
+					templateShareable : false,
+					sorter: [{
+						path: 'PONbr',
+						descending: false,
+						group: false
+					}]
+				}" >
+				<items>
+					<CustomListItem 
+						busyIndicatorDelay="0"
+						busy="{waybillView>isBusy}" >
+						<customData>
+							<core:CustomData
+								key="WayBillDetail_PO"
+								value="'StoreID':'{waybillView>StoreID}','WayBillNbr':'{waybillView>WayBillNbr}','Seal':'{waybillView>/data/Waybill/Seal}','PalletID':'{waybillView>PalletID}','PONbr':'{waybillView>PONbr}'"
+								writeToDom="true" />
+						</customData>
+						<content>
+							<FlexBox 
+								justifyContent="SpaceBetween"
+								alignItems="Center"
+								wrap="Wrap">
+								<items>
+									<Button
+										type="{= ${waybillView>POStatus} === 'R' ? 'Reject' : ${waybillView>POStatus} === 'X' ? 'Accept' : 'Transparent'}"
+										icon="{= ${waybillView>POStatus} === 'X' ? 'sap-icon://sys-enter-2' : ${waybillView>POStatus} === 'N' ? 'sap-icon://sys-minus' : 'sap-icon://message-warning' }"
+										enabled="{= ${waybillView>POStatus} === 'R' || ${waybillView>POStatus} === 'X' ? false : true}"
+										press="onSelectPO" >
+										<layoutData>
+											<FlexItemData alignSelf="Start" />
+											<FlexItemData growFactor="1" />
+										</layoutData>
+									</Button>
+									<Title
+										text="{waybillView>PONbr}" >
+										<layoutData>
+											<FlexItemData alignSelf="Start" />
+											<FlexItemData growFactor="2" />
+										</layoutData>
+									</Title>
+									<VBox>
+										<layoutData>
+											<FlexItemData alignSelf="End" />
+											<FlexItemData growFactor="5" />
+										</layoutData>
+										<Label
+											text="{waybillView>ItemCount} {i18n>PO_ArticleCountLabel}" />
+									</VBox>
+								</items>
+							</FlexBox>
+						</content>
+					</CustomListItem>
+				</items>
+			</List>
+		</ScrollContainer>
+
+	</VBox>
+</core:FragmentDefinition>

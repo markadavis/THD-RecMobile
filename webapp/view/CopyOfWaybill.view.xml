@@ -1,0 +1,361 @@
+<core:View xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+	controllerName="thd.recmobile.controller.Waybill" >
+
+	<Page
+		id="idWaybillPage"
+		title="{i18n>WaybillPageTitle} {waybillView>/data/Waybill/WayBillNbr}"
+		showNavButton="true"
+		navButtonPress="onNavButtonPress" >
+		<content>
+
+			<Panel
+				id="idWaybillPanel"
+				backgroundDesign="Solid"
+				expandable="true"
+				expanded="{= ${waybillView>/data/Waybill/ActionCode} === '04' ? true : true}"
+				expand="onDetailHeaderExpand" >
+ 
+				<headerToolbar>
+					<Toolbar>
+
+						<Button
+							type="{= ${waybillView>/data/Waybill/EntryStatus} === 'C' ? 'Accept' : ${waybillView>/data/Waybill/EntryStatus} === 'I' ? 'Emphasized' : 'Reject'}"
+							icon="{= ${waybillView>/data/Waybill/EntryStatus} === 'C' ? 'sap-icon://sys-enter-2' : ${waybillView>/data/Waybill/EntryStatus} === 'I' ? 'sap-icon://sys-minus' : 'sap-icon://message-warning' }"
+							press="onDetailHeaderExpand" >
+							<layoutData>
+								<FlexItemData alignSelf="Start" />
+								<FlexItemData growFactor="1" />
+							</layoutData>
+						</Button>
+						<Button
+							type="Transparent"
+							iconFirst="false"
+							text="{
+								path: 'waybillView>/data/Waybill/ActionCode',
+								formatter: '.formatter.statusText'
+							}"
+							press="onDetailHeaderExpand" />
+					</Toolbar>
+				</headerToolbar>
+
+				<infoToolbar>
+					<Toolbar
+						design="Solid"
+						visible="{= ${waybillView>/data/Waybill/EntryStatus} === 'I' ? false : true }" >
+						<Button
+							icon="sap-icon://shipping-status"
+							text="{i18n>WaybillPanel_ToolbarInfoBtn}"
+							press="onCheckInPress" />
+						<ToolbarSpacer />
+						<Button
+							icon="sap-icon://message-popup"
+							type="{
+								parts: ['waybillView>/data/Waybill/StoreID','waybillView>/data/Waybill/WayBillNbr','X','X','X','X'],
+								formatter: '.formatter.exceptionBtnType'
+							}"
+							text="{i18n>WaybillPanel_ToolbarReportIssueBtn}"
+							press="onReportIssue" >
+							<customData>
+								<core:CustomData
+									key="DetailHeaderPanel_BtnReport"
+									value="'StoreID':'{waybillView>/data/Waybill/StoreID}','WayBillNbr':'{waybillView>/data/Waybill/WayBillNbr}'"
+									writeToDom="true" />
+							</customData>
+						</Button>
+					</Toolbar>
+				</infoToolbar>
+
+				<ObjectHeader
+					id="idDetailHeader_mobile"
+					visible="{= ${device>/system/phone} ? true : false}"
+					responsive="true"
+					fullScreenOptimized="false"
+					backgroundDesign="Solid"
+					title="{i18n>WaybillPanel_HeaderTitle} {waybillView>/data/Waybill/LoadType}"
+					number="{= ${waybillView>/data/Waybill/Seal} === 'X' ? ${waybillView>/data/Waybill/PalletCount} : ${waybillView>/data/Waybill/POCount}}"
+					numberUnit="{= ${waybillView>/data/Waybill/Seal} === 'X' ? parseInt(${waybillView>/data/Waybill/PalletCount}) === 1 ? ${i18n>WaybillHeader_PalletUnit} : ${i18n>WaybillHeader_PalletUnits} : parseInt(${waybillView>/data/Waybill/POCount}) === 1 ? ${i18n>WaybillHeader_POUnit} : ${i18n>WaybillHeader_POUnits} }" >
+					<statuses>
+						<ObjectStatus
+							title="{i18n>WaybillHeader_ExceptionsLbl}"
+							text="{= ${waybillView>/data/IssueCount} === 0 ? ${i18n>WaybillHeader_NoExceptions} : ${waybillView>/data/IssueCount} }"
+							state="{= ${waybillView>/data/IssueCount} === 0 ? 'Success' : 'Error' }" />
+					</statuses>
+					<attributes>
+						<ObjectAttribute
+							title="{i18n>WaybillPanel_HeaderLabelScheduleTime}"
+							text="{
+								path: 'waybillView>/data/Waybill/ScheduleTimeStamp',
+								formatter: '.formatScheduledDateTimeStamp'
+							}" />
+						<ObjectAttribute
+							title="{i18n>WaybillPanel_HeaderLabelArrivalTime}"
+							text="{
+								path: 'waybillView>/data/Waybill/ArrivedTimeStamp',
+								formatter: '.formatArrivedDateTimeStamp'
+							}" />
+						<ObjectAttribute
+							title="{i18n>WaybillPanel_HeaderLabelVendorName}"
+							text="{waybillView>/data/Waybill/VendorName}" />
+						<ObjectAttribute
+							title="{i18n>WaybillPanel_HeaderLabelShipDepartment}"
+							text="{waybillView>/data/Waybill/DeptName}" />
+					</attributes>
+				</ObjectHeader>
+			</Panel>
+
+			<VBox		visible="false"
+				id="idWaybillPagePalletPO"
+				busyIndicatorDelay="{waybillView>/settings/delay}"
+				busy="{waybillView>/settings/busy}" >
+
+				<Toolbar
+					id="iWaybillToolbar"
+					width="100%"
+					design="Solid"
+					visible="{= ${waybillView>/data/Waybill/EntryStatus} === 'I' ? false : true }" >
+					<content>
+						<Button
+							id="iWaybillToolbarButtonAllPalletS"
+							icon="sap-icon://group-2"
+							tooltip="{= ${waybillView>/data/Waybill/Seal} === 'X' ? ${i18n>Pallet_TootipShowAll} : ${i18n>PO_TootipShowAll} }"
+							text="{= ${waybillView>/data/Waybill/Seal} === 'X' ? ${waybillView>/data/OpenPallets} : ${waybillView>/data/OpenPOs} } {i18n>WaybillToolbar_OpenItems}"
+							press="onShowAll" />
+						<SearchField
+							id="iWaybillToolbarSearch"
+							width="100%"
+							placeholder="{= ${waybillView>/data/Waybill/Seal} === 'X' ? ${i18n>Pallet_PlaceholderSearch} : ${i18n>PO_PlaceholderSearch} }"
+							search="onSearch" />
+						<Button
+							icon="sap-icon://bar-code"
+							visible="{= ${appView>/settings/hasCameraScanner} ? true : false }"
+							press="onCameraScanner" />
+						<Button
+							icon="sap-icon://add"
+							visible="{= ${waybillView>/data/Waybill/Seal} === 'X' ? false : true }"
+							press="onClickAddPO" >
+							<customData>
+								<core:CustomData
+									key="WayBillDetail_BtnAddPO"
+									value="'StoreID':'{StoreID}','WayBillNbr':'{WayBillNbr}','PONbr':''"
+									writeToDom="true" />
+							</customData>
+						</Button>
+					</content>
+				</Toolbar>
+	
+				<!-- Start of Scroll Container -->
+				<ScrollContainer
+					id="idWayBillListScroller"
+					vertical="true"
+					visible="{= ${waybillView>/data/Waybill/EntryStatus} === 'I' ? false : true }" >
+	
+					<!-- List of Un-Received Pallets -->
+					<List
+						id="idWayBillList"
+						headerText="{i18n>Pallet_ListHeader}"
+						noDataText="{i18n>Pallet_PendingNoPallets}"
+						mode="SingleSelectMaster"
+						inset="false"
+						selectionChange="onSelect"
+						visible="{= ${waybillView>/data/Waybill/Seal} === 'X' ? true : false }"
+						items="{
+							path: 'waybillView>/data/DGRPallets/',
+							templateShareable : false,
+							sorter: [{
+								path: 'PalletID',
+								descending: false,
+								group: false
+							}]
+						}" >
+						<items>
+							<CustomListItem 
+								id="idWaybillListItem"
+								busyIndicatorDelay="0"
+								busy="{waybillView>isBusy}" >
+								<customData>
+									<core:CustomData
+										key="WayBillDetail_Pallet"
+										value="'StoreID':'{waybillView>StoreID}','WayBillNbr':'{waybillView>WayBillNbr}','PalletID':'{waybillView>PalletID}'"
+										writeToDom="true" />
+								</customData>
+								<content>
+									<FlexBox 
+										justifyContent="SpaceBetween"
+										alignItems="Center"
+										wrap="Wrap">
+										<items>
+											<Button
+												id="idWayBillDetail_PalletsLeft"
+												type="{= ${waybillView>PalletStatus} === 'R' ? 'Reject' : ${waybillView>PalletStatus} === 'X' ? 'Accept' : 'Transparent'}"
+												icon="{= ${waybillView>PalletStatus} === 'X' ? 'sap-icon://sys-enter-2' : ${waybillView>PalletStatus} === 'N' ? 'sap-icon://sys-minus' : 'sap-icon://message-warning' }"
+												enabled="{= ${waybillView>PalletStatus} === 'R' || ${waybillView>PalletStatus} === 'X' ? false : true}"
+												press="onSelectPallet" >
+												<layoutData>
+													<FlexItemData alignSelf="Start" />
+													<FlexItemData growFactor="1" />
+												</layoutData>
+											</Button>
+											<Title
+												width="{
+													path : 'waybillView>PalletID',
+													formatter : '.formatWidthPalletNbr'
+												}"
+												level="{
+													path : 'waybillView>PalletID',
+													formatter : '.formatLevelPalletNbr'
+												}"
+												text="{
+													path : 'waybillView>PalletID',
+													formatter : '.formatter.removeLeadingZeros'
+												}" >
+												<layoutData>
+													<FlexItemData alignSelf="Start" />
+													<FlexItemData growFactor="2" />
+												</layoutData>
+											</Title>
+											<VBox>
+												<layoutData>
+													<FlexItemData alignSelf="End" />
+													<FlexItemData growFactor="5" />
+												</layoutData>
+												<Label
+													text="{waybillView>POCount} {i18n>Pallet_PoCountLabel}" />
+												<Label
+													text="{waybillView>ItemCount} {i18n>Pallet_ArticleCountLabel}" />
+											</VBox>
+											<!--
+											<Button
+												id="idWayBillDetail_PalletBtnReport"
+												type="{
+													parts: ['waybillView>StoreID','waybillView>WayBillNbr','waybillView>PalletID','X','X','X'],
+													formatter: '.formatter.exceptionBtnType'
+												}"
+												icon="sap-icon://message-popup"
+												tooltip="{i18n>WaybillPanel_ToolbarReportIssueBtn}"
+												press="onDialogCollectIssueReport" >
+												<customData>
+													<core:CustomData
+														key="WayBillDetail_PalletBtnReport"
+														value="'StoreID':'{waybillView>StoreID}','WayBillNbr':'{waybillView>WayBillNbr}','Pallet':'{waybillView>PalletID}'"
+														writeToDom="true" />
+												</customData>
+												<layoutData>
+													<FlexItemData alignSelf="End" />
+													<FlexItemData growFactor="1" />
+												</layoutData>
+											</Button>
+											-->
+										</items>
+									</FlexBox>
+								</content>
+							</CustomListItem>
+						</items>
+					</List>
+	
+					<!-- List of Un-Received POs -->
+					<List
+						id="idWayBillPOList"
+						headerText="{i18n>PO_ListHeader}"
+						noDataText="{i18n>PO_PendingNoPOs}"
+						mode="SingleSelectMaster"
+						inset="false"
+						selectionChange="onSelect"
+						visible="{= ${waybillView>/data/Waybill/Seal} === 'X' ? false : true }"
+						items="{
+							path: 'waybillView>/data/DGRPOs/',
+							templateShareable : false,
+							sorter: [{
+								path: 'PONbr',
+								descending: false,
+								group: false
+							}]
+						}" >
+						<items
+							busyIndicatorDelay="0" >
+							<CustomListItem
+								id="idWayBillPOListItem"
+								busyIndicatorDelay="0"
+								busy="{waybillView>isBusy}" >
+								<customData>
+									<core:CustomData
+										key="WayBillDetail_PO"
+										value="'StoreID':'{waybillView>StoreID}','WayBillNbr':'{waybillView>WayBillNbr}','PONbr':'{waybillView>PONbr}'"
+										writeToDom="true" />
+								</customData>
+								<content>
+									<FlexBox 
+										justifyContent="SpaceBetween"
+										alignItems="Center"
+										wrap="Wrap">
+										<items>
+											<Button
+												id="idWayBillPODetail_PalletsLeft"
+												type="{= ${waybillView>POStatus} === 'R' ? 'Reject' : ${waybillView>POStatus} === 'X' ? 'Accept' : 'Transparent'}"
+												icon="{= ${waybillView>POStatus} === 'X' ? 'sap-icon://sys-enter-2' : ${waybillView>POStatus} === 'N' ? 'sap-icon://sys-minus' : 'sap-icon://message-warning' }"
+												enabled="{= ${waybillView>POStatus} === 'R' || ${waybillView>POStatus} === 'X' ? false : true}"
+												press="onSelectPallet" >
+												<layoutData>
+													<FlexItemData alignSelf="Start" />
+													<FlexItemData growFactor="1" />
+												</layoutData>
+											</Button>
+											<Title
+												width="10em"
+												level="H2"
+												text="{
+													path : 'waybillView>PONbr',
+													formatter : '.formatter.removeLeadingZeros'
+												}" >
+												<layoutData>
+													<FlexItemData alignSelf="Start" />
+													<FlexItemData growFactor="2" />
+												</layoutData>
+											</Title>
+											<VBox>
+												<layoutData>
+													<FlexItemData alignSelf="End" />
+													<FlexItemData growFactor="5" />
+												</layoutData>
+												<Label
+													text="{waybillView>ItemCount} {i18n>PO_ArticleCountLabel}" />
+											</VBox>
+											<!--
+											<Button
+												id="idWayBillPODetail_POBtnReport"
+												type="{
+													parts: ['waybillView>StoreID','waybillView>WayBillNbr','waybillView>PONbr','X','X','X'],
+													formatter: '.formatter.exceptionBtnType'
+												}"
+												icon="sap-icon://message-popup"
+												tooltip="{i18n>WaybillPanel_ToolbarReportIssueBtn}"
+												press="onDialogCollectIssueReport" >
+												<customData>
+													<core:CustomData
+														key="WayBillDetail_PalletBtnReport"
+														value="'StoreID':'{waybillView>StoreID}','WayBillNbr':'{waybillView>WayBillNbr}','Pallet':'{waybillView>PONbr}'"
+														writeToDom="true" />
+												</customData>
+												<layoutData>
+													<FlexItemData alignSelf="End" />
+													<FlexItemData growFactor="1" />
+												</layoutData>
+											</Button>
+											-->
+										</items>
+									</FlexBox>
+								</content>
+							</CustomListItem>
+						</items>
+					</List>
+	
+				</ScrollContainer>
+
+			</VBox>
+
+		</content>
+		<footer></footer>
+	</Page>
+
+</core:View>

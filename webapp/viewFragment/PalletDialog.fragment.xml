@@ -1,0 +1,82 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout"
+	xmlns="sap.m" >
+	<Dialog
+		id="idPalletDialog"
+		draggable="true"
+		icon="{= ${PalletStatus} === 'X' ? 'sap-icon://sys-enter-2' : ${PalletStatus} === 'N' ? 'sap-icon://sys-minus' : 'sap-icon://message-warning' }"
+		title="{= ${PalletStatus} === 'N' ? ${i18n>PalletDialog_StatusNotAccepted} : ${PalletStatus} === 'R' ? ${i18n>PalletDialog_StatusDGR} : ${PalletStatus} === 'X' ? ${i18n>PalletDialog_StatusComplete} : ${i18n>PalletDialog_StatusUnknown} }"
+		beforeOpen="onPalletDialogOpen" >
+		<subHeader>
+			<Toolbar
+				design="Solid"
+				visible="{= ${PalletStatus} === 'N' ? false : true }" >
+				<Button
+					icon="sap-icon://group-2"
+					type="Default"
+					text="{i18n>PalletDialog_HeaderToolbarArticles}"
+					press="onAllArticles" />
+				<ToolbarSpacer />
+				<ToolbarSeparator visible="{= ${PalletStatus} === 'N' ? false : true }" />
+				<ToolbarSpacer />
+				<Button
+					icon="sap-icon://message-popup"
+					type="{
+						parts: ['StoreID','WayBillNbr','X','X','X','X'],
+						formatter: '.formatter.exceptionBtnType'
+					}"
+					text="{i18n>PalletDialog_HeaderToolbarIssues}"
+					press="onReportIssue" >
+					<customData>
+						<core:CustomData
+							key="DetailHeaderPanel_BtnReport"
+							value="'StoreID':'{StoreID}','WayBillNbr':'{WayBillNbr}'"
+							writeToDom="true" />
+					</customData>
+				</Button>
+			</Toolbar>
+		</subHeader>
+		<content>
+			<ObjectHeader
+				id="idPalletDialogHeader"
+				intro="{i18n>PalletDialog_HeaderTitle}"
+				title="{PalletID}"
+				number="{ItemCount}"
+				numberUnit="{= parseInt(${ItemCount}) === 1 ? ${i18n>PalletDialog_Article} : ${i18n>PalletDialog_Articles} }" >
+				<attributes id="Pallet_attributes">
+					<ObjectAttribute
+						title="{i18n>PalletDialog_Trailer}"
+						text="{TrailerNbr}" />
+					<ObjectAttribute
+						title="{i18n>PalletDialog_Carrier}"
+						text="{CarrierCode}" />
+					<ObjectAttribute
+						title="{i18n>PalletDialog_POs}"
+						text="{POCount}" />
+					<!--
+					<ObjectAttribute
+						title="{i18n>PalletDialog_Articles}"
+						text="{ItemCount}" />
+					-->
+				</attributes>
+			</ObjectHeader>
+		</content>
+
+		<buttons>
+			<Button
+				type="Default"
+				visible="{= ${PalletStatus} === 'R' ? true : false }"
+				text="{i18n>PalletDialog_HeaderToolbarDGR}"
+				press="onDGR" />
+			<Button
+				type="{= ${PalletStatus} === 'N' ? 'Accept' : 'Default' }"
+				visible="{= ${PalletStatus} === 'N' ? true : false }"
+				text="{i18n>PalletDialog_ButtonRGR}"
+				press="onPalletDialogRGR" />
+			<Button
+				type="{= ${PalletStatus} === 'N' ? 'Reject' : 'Default' }"
+				text="{= ${PalletStatus} === 'N' ? ${i18n>PalletDialog_ButtonCancel} : ${i18n>PalletDialog_ButtonClose} }"
+				press="onPalletDialogClose" />
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

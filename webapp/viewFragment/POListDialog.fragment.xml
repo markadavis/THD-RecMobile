@@ -1,0 +1,93 @@
+<core:FragmentDefinition
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m" >
+	<Dialog
+		id="idPOListDialog"
+		draggable="true"
+		title="{i18n>POListDialog_Title}"
+		beforeOpen="onPOListDialogOpen" >
+		<content>
+
+			<List
+				id="idPOListDialogList"
+				noDataText="{i18n>POListDialog_NoData}"
+				mode="SingleSelectMaster"
+				inset="false"
+				selectionChange="onPOListDialogSelect"
+				items="{
+					path: '/data/RGRPOs/',
+					templateShareable : false,
+					sorter: [{
+						path: 'SortIndicator',
+						descending: false,
+						group: false
+					},{
+						path: 'PONbr',
+						descending: false,
+						group: false
+					}]
+				}" >
+
+				<items
+					busyIndicatorDelay="0" >
+					<CustomListItem id="idPOListDialogListItem" >
+						<customData>
+							<core:CustomData
+								key="POListDialog_PO"
+								value="'StoreID':'{StoreID}','WayBillNbr':'{WayBillNbr}','PONbr':'{PONbr}'"
+								writeToDom="true" />
+						</customData>
+						<content>
+							<FlexBox 
+								class="sapUiTinyMargin"
+								justifyContent="SpaceBetween"
+								alignItems="Center"
+								wrap="Wrap">
+								<items>
+									<Button
+										id="idPOListDialogItemPOsLeft"
+										type="{= ${POStatus} === 'R' ? 'Reject' : ${POStatus} === 'X' ? 'Accept' : 'Transparent'}"
+										icon="{= ${POStatus} === 'X' ? 'sap-icon://sys-enter-2' : ${POStatus} === 'N' ? 'sap-icon://sys-minus' : 'sap-icon://message-warning' }"
+										enabled="{= ${POStatus} === 'R' || ${POStatus} === 'X' ? false : true}"
+										press="onPOListDialogSelect" >
+										<layoutData>
+											<FlexItemData alignSelf="Start" />
+											<FlexItemData growFactor="1" />
+										</layoutData>
+									</Button>
+									<Title
+										width="10em"
+										level="H2"
+										text="{
+											path : 'PONbr',
+											formatter : '.formatter.removeLeadingZeros'
+										}" >
+										<layoutData>
+											<FlexItemData alignSelf="Start" />
+											<FlexItemData growFactor="2" />
+										</layoutData>
+									</Title>
+									<VBox>
+										<layoutData>
+											<FlexItemData alignSelf="End" />
+											<FlexItemData growFactor="5" />
+										</layoutData>
+										<Label
+											text="{ItemCount} {i18n>PO_ArticleCountLabel}" />
+									</VBox>
+								</items>
+							</FlexBox>
+						</content>
+					</CustomListItem>
+				</items>
+			</List>
+		</content>
+
+		<buttons>
+			<Button
+				text="{i18n>POListDialog_ButtonClose}"
+				press="onPOListDialogButtonClose" />
+		</buttons>
+
+	</Dialog>
+</core:FragmentDefinition>

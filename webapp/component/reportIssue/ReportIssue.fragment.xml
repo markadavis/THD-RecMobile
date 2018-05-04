@@ -1,0 +1,78 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:form="sap.ui.layout.form" >
+	<ResponsivePopover
+		id="idDialogCollectIssueReport"
+		title="{i18n>ReportIssue_Title}"
+		class="sapUiPopupWithPadding"
+		placement="Left"
+		showCloseButton="false"
+		afterClose="onAfterClose" >
+		<!--
+			<Button
+				id="idDialogCollectIssueReportDeleteBtn"
+				icon="sap-icon://decline"
+				text="{i18n>ReportIssue_Delete}"
+				type="Reject"
+				visible="{= ${dialogVars>/displayOnly} ? false : true }"
+				press="onDeleteBtn" />
+		-->
+		<beginButton>
+			<Button
+				id="idDialogCollectIssueReportAcceptBtn"
+				icon="sap-icon://accept"
+				text="{i18n>ReportIssue_Accept}"
+				type="Accept"
+				visible="{= ${dialogVars>/displayOnly} ? false : true }"
+				press="onSaveBtn" />
+		</beginButton>
+		<endButton>
+			<Button
+				id="idDialogCollectIssueReportDeclineBtn"
+				icon="sap-icon://decline"
+				text="{i18n>ReportIssue_Decline}"
+				type="Reject"
+				press="onCancelBtn" />
+		</endButton>
+		<content>
+			<form:SimpleForm
+				id="idDialogCollectIssueReportForm" >
+				<form:content>
+					<Label 
+						text="{i18n>ReportIssue_IssueTypeLbl}" />
+					<Select
+						id="idDialogCollectIssueReportType"
+						forceSelection="true"
+						selectedKey="{Type}"
+						enabled="{= ${dialogVars>/displayOnly} ? false : true }"
+						change="onTypeChange"
+						items="{
+							path: 'dialogVars>/ExceptionTypeSet'
+						}" >
+						<core:Item key="{dialogVars>TypeCode}" text="{dialogVars>TypeText}" />
+					</Select>
+					<Label
+						id="idDialogCollectIssueReportQtyLbl"
+						visible="{dialogVars>/hasQty}"
+						text="{i18n>ReportIssue_QuantityLbl}" />
+					<Input
+						id="idDialogCollectIssueReportQty"
+						visible="{dialogVars>/hasQty}"
+						enabled="{= ${dialogVars>/displayOnly} ? false : true }"
+						value="{Qty}" />
+					<Label
+						text="{i18n>ReportIssue_DescriptionLbl}"/>
+					<TextArea
+						id="idDialogCollectIssueReportText"
+						width="100%"
+						wrapping="Soft"
+						maxLength="72"
+						rows="3"
+						enabled="{= ${dialogVars>/displayOnly} ? false : true }"
+						value="{Text}" />
+				</form:content>
+			</form:SimpleForm>
+		</content>
+	</ResponsivePopover>
+</core:FragmentDefinition>

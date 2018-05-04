@@ -1,0 +1,308 @@
+<core:View controllerName="thd.recmobile.controller.PO"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m" >
+
+	<Page
+		id="idPOPage"
+		title="{i18n>POPageTitle} {POView>/data/PO/PONbr}"
+		showNavButton="true"
+		navButtonPress="onNavButtonPress" >
+		<content>
+
+			<Panel
+				id="idPOPanel"
+				backgroundDesign="Solid"
+				expandable="true"
+				expanded="true"
+				expand="onDetailHeaderExpand" >
+ 
+				<headerToolbar>
+					<Toolbar>
+						<Button
+							type="{= ${POView>/data/PO/POStatus} === 'X' ? 'Accept' : ${POView>/data/PO/POStatus} === 'N' ? 'Emphasized' : 'Reject'}"
+							icon="{= ${POView>/data/PO/POStatus} === 'X' ? 'sap-icon://sys-enter-2' : ${POView>/data/PO/POStatus} === 'N' ? 'sap-icon://sys-minus' : 'sap-icon://message-warning' }"
+							press="onDetailHeaderExpand" >
+							<layoutData>
+								<FlexItemData alignSelf="Start" />
+								<FlexItemData growFactor="1" />
+							</layoutData>
+						</Button>
+						<Button
+							type="Transparent"
+							iconFirst="false"
+							text="{
+								path: 'POView>/data/PO/POStatus',
+								formatter: '.formatter.statusText'
+							}"
+							press="onDetailHeaderExpand" />
+					</Toolbar>
+				</headerToolbar>
+
+				<infoToolbar>
+					<Toolbar
+						design="Solid"
+						visible="{= ${POView>/data/PO/POStatus} === 'N' ? false : true }" >
+						<ToolbarSpacer />
+						<Button
+							icon="sap-icon://message-popup"
+							type="{
+								parts: ['POView>/data/PO/StoreID','POView>/data/PO/WayBillNbr','X','X','X','X'],
+								formatter: '.formatter.exceptionBtnType'
+							}"
+							text="{i18n>POPanel_ToolbarReportIssueBtn}"
+							press="onReportIssue" >
+							<customData>
+								<core:CustomData
+									key="DetailHeaderPanel_BtnReport"
+									value="'StoreID':'{POView>/data/PO/StoreID}','WayBillNbr':'{POView>/data/PO/WayBillNbr}','PONbr':'{POView>/data/PO/PONbr}'"
+									writeToDom="true" />
+							</customData>
+						</Button>
+					</Toolbar>
+				</infoToolbar>
+
+				<ObjectHeader
+					id="idDetailHeader_mobile"
+					visible="{= ${device>/system/phone} ? true : false}"
+					responsive="true"
+					fullScreenOptimized="false"
+					backgroundDesign="Solid"
+					title="{i18n>POPanel_HeaderIntro} {POView>/data/PO/WayBillNbr}"
+					intro="{i18n>POPanel_HeaderLabelPOCount} {POView>/data/PO/ItemCount}"
+					number="{POView>/data/PO/ItemCount}"
+					numberUnit="{= parseInt(${POView>/data/PO/ItemCount}) === 1 ? ${i18n>POHeader_POUnit} : ${i18n>POHeader_POUnits} }" >
+					<statuses>
+						<ObjectStatus
+							title="{i18n>POHeader_ExceptionsLbl}"
+							text="{= ${POView>/data/IssueCount} === 0 ? ${i18n>POHeader_NoExceptions} : ${POView>/data/IssueCount} }"
+							state="{= ${POView>/data/IssueCount} === 0 ? 'Success' : 'Error' }" />
+					</statuses>
+					<attributes>
+						<ObjectAttribute
+							title="{i18n>POPanel_HeaderLabelTrailerNbr}"
+							text="{POView>/data/PO/TrailerNbr}" />
+						<ObjectAttribute
+							title="{i18n>POPanel_HeaderLabelCarrierCode}"
+							text="{POView>/data/PO/CarrierCode}" />
+						<!--
+						<ObjectAttribute
+							title="{i18n>POPanel_HeaderLabelArticleCount}"
+							text="{POView>/data/PO/ItemCount}" />
+						-->
+					</attributes>
+				</ObjectHeader>
+			</Panel>
+
+			<VBox
+				id="idPOPageArticles"
+				busyIndicatorDelay="{POView>/settings/delay}"
+				busy="{POView>/settings/busy}" >
+
+				<Toolbar
+					id="idPOToolbar"
+					width="100%"
+					design="Solid"
+					visible="{= ${POView>/data/PO/ItemStatus} === 'N' ? false : true }" >
+					<content>
+						<SearchField
+							id="idPOToolbarSearch"
+							width="100%"
+							placeholder="{i18n>POToolbar_PlaceholderSearch}"
+							search="onSearch" />
+						<Button
+							icon="sap-icon://bar-code"
+							visible="{= ${appView>/settings/hasCameraScanner} ? true : false }"
+							press="onCameraScanner" />
+					</content>
+				</Toolbar>
+	
+				<!-- Start of Scroll Container -->
+				<ScrollContainer
+					id="idPOListScroller"
+					vertical="true"
+					visible="{= ${POView>/data/PO/ItemStatus} === 'N' ? false : true }" >
+					<!-- List of Un-Received Articles -->
+					<List
+						id="idPOList"
+						headerText="{i18n>POList_ListHeader}"
+						noDataText="{i18n>POList_PendingNoArticles}"
+						mode="SingleSelectMaster"
+						inset="false"
+						selectionChange="onSelect"
+						updateFinished="onUpdateFinished"
+						items="{
+							path: 'POView>/data/DGRArticles/',
+							templateShareable : false,
+							sorter: [{
+								path: 'Article',
+								descending: false,
+								group: false
+							}]
+						}" >
+						<items
+							busyIndicatorDelay="0" >
+	
+							<CustomListItem
+								id="idPOListItem"
+								busyIndicatorDelay="0"
+								busy="{POView>isBusy}" >
+								<customData>
+									<core:CustomData
+										key="POListItem"
+										value="'StoreID':'{POView>StoreID}','WayBillNbr':'{POView>WayBillNbr}','POID':'{POView>PalletID}','PONbr':'{POView>PONbr}','ItemID':'{POView>ItemID}','Article':'{POView>Article}'"
+										writeToDom="true" />
+								</customData>
+								<content>
+									<VBox class="sapUiTinyMargin" >
+										<FlexBox
+											justifyContent="Start"
+											alignItems="Start"
+											wrap="NoWrap" >
+											<items>
+												<!--
+												<Link
+													emphasized="true"
+													width="6.5em"
+													press="onArticleLink"
+													tooltip="{Article_LinkToALU}"
+													text="{
+														path : 'Article',
+														formatter : '.formatter.removeLeadingZeros'
+													}" />
+												-->
+												<Title
+													level="H2"
+													width="6.5em"
+													tooltip="{i18n>POListDialog_TooltipPO} {PONbr}"
+													text="{
+														path : 'POView>Article',
+														formatter : '.formatter.removeLeadingZeros'
+													}" />
+												<Label
+													width="18em"
+													tooltip="{i18n>POListDialog_TooltipPO} {PONbr}"
+													text="{POView>ArticleDescription}" />
+											</items>
+										</FlexBox>
+										<FlexBox
+											tooltip="{i18n>POListDialog_TooltipPO} {PONbr}"
+											justifyContent="SpaceBetween"
+											alignItems="Center"
+											wrap="Wrap" >
+											<items>
+												<Button
+													type="{= ${POView>ItemStatus} === 'R' ? 'Reject' : ${ItemStatus} === 'X' ? 'Accept' : 'Transparent'}"
+													icon="{= ${POView>ItemStatus} === 'X' ? 'sap-icon://sys-enter-2' : ${POView>ItemStatus} === 'N' ? 'sap-icon://sys-minus' : 'sap-icon://message-warning' }"
+													press="onSelect" >
+													<layoutData>
+														<FlexItemData alignSelf="Start" />
+														<FlexItemData growFactor="1" />
+													</layoutData>
+													<customData>
+														<core:CustomData
+															key="POListItem_StatusBtn"
+															value="'StoreID':'{POView>StoreID}','WayBillNbr':'{POView>WayBillNbr}','PalletID':'{POView>PalletID}','PONbr':'{POView>PONbr}','ItemID': '{POView>ItemID}'"
+															writeToDom="true" />
+													</customData>
+												</Button>
+												<VBox>
+													<layoutData>
+														<FlexItemData alignSelf="Start" />
+														<FlexItemData growFactor="4" />
+													</layoutData>
+													<Label
+														text="{i18n>POListDialog_OpenLabel} {POView>OpenQty}" />
+													<Label
+														text="{i18n>POListDialog_ASNLabel} {POView>AsnQty}" />
+													<Label
+														text="{i18n>POListDialog_UOMLabel} {POView>BaseUnit}" />
+												</VBox>
+												<Button
+													id="idPOListItem_ReportIssueBtn"
+													type="{
+														parts: ['POView>StoreID','POView>WayBillNbr','POView>PalletID','POView>PONbr','POView>ItemID'],
+														formatter: '.formatter.exceptionBtnType'
+													}"
+													icon="sap-icon://message-popup"
+													tooltip="{i18n>POListDialog_ReportIssueBtn}"
+													visible="{
+														parts: ['POView>StoreID','POView>WayBillNbr','POView>PalletID','POView>PONbr','POView>ItemID'],
+														formatter: '.formatter.exceptionBtnVisible'
+													}" >
+													<customData>
+														<core:CustomData
+															key="POListItem_ReportIssue"
+															value="'StoreID':'{POView>StoreID}','WayBillNbr':'{POView>WayBillNbr}','PalletID':'POView>PalletID','PONbr':'{POView>PONbr}','ItemID':'{POView>ItemID}'"
+															writeToDom="true" />
+													</customData>
+													<layoutData>
+														<FlexItemData alignSelf="End" />
+														<FlexItemData growFactor="1" />
+													</layoutData>
+												</Button>
+											</items>
+										</FlexBox>
+										<FlexBox
+											visible="{= ${POView>SpecialOrder} === 'X' ? true : false }"
+											tooltip="{i18n>POListDialog_TooltipPO} {POView>PONbr}"
+											justifyContent="Start"
+											alignItems="End"
+											wrap="Wrap" >
+											<items>
+												<VBox>
+													<layoutData>
+														<FlexItemData alignSelf="End" />
+														<FlexItemData growFactor="3" />
+													</layoutData>
+													<ObjectStatus
+														text="{i18n>POListDialog_SpecialOrder}"
+														state="Error" />
+													<Label
+														text="{i18n>POListDialog_BinLocation}" />
+												</VBox>
+												<HBox>
+													<layoutData>
+														<FlexItemData alignSelf="Center" />
+														<FlexItemData growFactor="2" />
+													</layoutData>
+													<Input
+														id="idPOListItem_BayInput"
+														enabled="{= ${POView>ItemStatus} === 'X' ? false : true }"
+														width="8em"
+														maxLength="10"
+														value="{POView>Location}" />
+													<Button
+														id="idPOListItem_PrintBtn"
+														enabled="{= ${POView>ItemStatus} === 'X' ? true : true }"
+														icon="sap-icon://print"
+														press="onPrintBtn" >
+														<customData>
+															<core:CustomData
+																key="POListItem_PrinBtnt"
+																value="'StoreID':'{POView>StoreID}','WayBillNbr':'{POView>WayBillNbr}','PalletID':'{POView>PalletID}','PONbr':'{POView>PONbr}','ItemID':'{POView>ItemID}'"
+																writeToDom="true" />
+														</customData>
+													</Button>
+												</HBox>
+												<HBox>
+													<layoutData>
+														<FlexItemData alignSelf="Center" />
+														<FlexItemData growFactor="1" />
+													</layoutData>
+												</HBox>
+											</items>
+										</FlexBox>
+									</VBox>
+								</content>
+							</CustomListItem>
+	
+						</items>
+					</List>
+				</ScrollContainer>
+
+			</VBox>
+		</content>
+		<footer></footer>
+	</Page>
+
+</core:View>

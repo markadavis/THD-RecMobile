@@ -1,0 +1,48 @@
+{
+  "projectType": [
+    "sap.watt.uitools.ide.fiori",
+    "com.sap.webide.hybrid.cordova"
+  ],
+  "generation": [
+    {
+      "templateId": "ui5template.basicSAPUI5ApplicationProject",
+      "templateVersion": "1.32.0",
+      "dateTimeStamp": "Wed, 13 Jan 2016 12:56:36 GMT"
+    },
+    {
+      "templateId": "servicecatalog.connectivityComponent",
+      "templateVersion": "0.0.0",
+      "dateTimeStamp": "Wed, 13 Jan 2016 12:57:19 GMT"
+    },
+    {
+      "templateId": "wysiwygtemplate.quickStart",
+      "templateVersion": "0.0.0",
+      "dateTimeStamp": "Thu, 26 Jan 2017 15:01:22 GMT"
+    },
+    {
+      "templateId": "ui5template.basicSAPUI5ApplicationComponent",
+      "templateVersion": "1.4.0",
+      "dateTimeStamp": "Thu, 26 Jan 2017 17:08:09 GMT"
+    }
+  ],
+  "translation": {
+    "translationDomain": "",
+    "supportedLanguages": "en,fr",
+    "defaultLanguage": "en",
+    "defaultI18NPropertyFile": "i18n.properties",
+    "resourceModelName": "i18n"
+  },
+  "dataBinding": {},
+  "mockpreview": {
+    "mockUri": "/sap/opu/odata/sap/YDMM_RECEIVING_MSTR_SRV",
+    "metadataFilePath": "localService/metadata.xml",
+    "loadJSONFiles": true,
+    "loadCustomRequests": false,
+    "mockRequestsFilePath": ""
+  },
+  "hcpdeploy": {
+    "account": "b11747a58",
+    "name": "ydsdrecmobile",
+    "lastVersionWeTriedToDeploy": "1.0.47"
+  }
+}

@@ -1,0 +1,151 @@
+[{
+	"WayBillNbr": "WayBillNbr 1",
+	"StoreID": "StoreID 1",
+	"ArrivalTimeStamp": "/Date(1155823693000)/",
+	"SealNbrWms": "SealNbrWms 1",
+	"SealNbrSite": "SealNbrSite 1",
+	"SealIntact": "SealIntact 1",
+	"CarrierCode": "CarrierCode 1",
+	"SealDecertify": "SealDecertify 1",
+	"Seal": "Seal 1",
+	"RefNumber": "RefNumber 1",
+	"__metadata": {
+		"uri": "DriverCheckInSet(WayBillNbr='WayBillNbr%201',StoreID='StoreID%201')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.DriverCheckIn"
+	}
+}, {
+	"WayBillNbr": "WayBillNbr 2",
+	"StoreID": "StoreID 2",
+	"ArrivalTimeStamp": "/Date(965225293000)/",
+	"SealNbrWms": "SealNbrWms 2",
+	"SealNbrSite": "SealNbrSite 2",
+	"SealIntact": "SealIntact 2",
+	"CarrierCode": "CarrierCode 2",
+	"SealDecertify": "SealDecertify 2",
+	"Seal": "Seal 2",
+	"RefNumber": "RefNumber 2",
+	"__metadata": {
+		"uri": "DriverCheckInSet(WayBillNbr='WayBillNbr%202',StoreID='StoreID%202')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.DriverCheckIn"
+	}
+}, {
+	"WayBillNbr": "WayBillNbr 3",
+	"StoreID": "StoreID 3",
+	"ArrivalTimeStamp": "/Date(989676493000)/",
+	"SealNbrWms": "SealNbrWms 3",
+	"SealNbrSite": "SealNbrSite 3",
+	"SealIntact": "SealIntact 3",
+	"CarrierCode": "CarrierCode 3",
+	"SealDecertify": "SealDecertify 3",
+	"Seal": "Seal 3",
+	"RefNumber": "RefNumber 3",
+	"__metadata": {
+		"uri": "DriverCheckInSet(WayBillNbr='WayBillNbr%203',StoreID='StoreID%203')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.DriverCheckIn"
+	}
+}, {
+	"WayBillNbr": "WayBillNbr 4",
+	"StoreID": "StoreID 4",
+	"ArrivalTimeStamp": "/Date(1252678093000)/",
+	"SealNbrWms": "SealNbrWms 4",
+	"SealNbrSite": "SealNbrSite 4",
+	"SealIntact": "SealIntact 4",
+	"CarrierCode": "CarrierCode 4",
+	"SealDecertify": "SealDecertify 4",
+	"Seal": "Seal 4",
+	"RefNumber": "RefNumber 4",
+	"__metadata": {
+		"uri": "DriverCheckInSet(WayBillNbr='WayBillNbr%204',StoreID='StoreID%204')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.DriverCheckIn"
+	}
+}, {
+	"WayBillNbr": "WayBillNbr 5",
+	"StoreID": "StoreID 5",
+	"ArrivalTimeStamp": "/Date(1179497293000)/",
+	"SealNbrWms": "SealNbrWms 5",
+	"SealNbrSite": "SealNbrSite 5",
+	"SealIntact": "SealIntact 5",
+	"CarrierCode": "CarrierCode 5",
+	"SealDecertify": "SealDecertify 5",
+	"Seal": "Seal 5",
+	"RefNumber": "RefNumber 5",
+	"__metadata": {
+		"uri": "DriverCheckInSet(WayBillNbr='WayBillNbr%205',StoreID='StoreID%205')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.DriverCheckIn"
+	}
+}, {
+	"WayBillNbr": "WayBillNbr 6",
+	"StoreID": "StoreID 6",
+	"ArrivalTimeStamp": "/Date(1272204493000)/",
+	"SealNbrWms": "SealNbrWms 6",
+	"SealNbrSite": "SealNbrSite 6",
+	"SealIntact": "SealIntact 6",
+	"CarrierCode": "CarrierCode 6",
+	"SealDecertify": "SealDecertify 6",
+	"Seal": "Seal 6",
+	"RefNumber": "RefNumber 6",
+	"__metadata": {
+		"uri": "DriverCheckInSet(WayBillNbr='WayBillNbr%206',StoreID='StoreID%206')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.DriverCheckIn"
+	}
+}, {
+	"WayBillNbr": "WayBillNbr 7",
+	"StoreID": "StoreID 7",
+	"ArrivalTimeStamp": "/Date(1052575693000)/",
+	"SealNbrWms": "SealNbrWms 7",
+	"SealNbrSite": "SealNbrSite 7",
+	"SealIntact": "SealIntact 7",
+	"CarrierCode": "CarrierCode 7",
+	"SealDecertify": "SealDecertify 7",
+	"Seal": "Seal 7",
+	"RefNumber": "RefNumber 7",
+	"__metadata": {
+		"uri": "DriverCheckInSet(WayBillNbr='WayBillNbr%207',StoreID='StoreID%207')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.DriverCheckIn"
+	}
+}, {
+	"WayBillNbr": "WayBillNbr 8",
+	"StoreID": "StoreID 8",
+	"ArrivalTimeStamp": "/Date(1116079693000)/",
+	"SealNbrWms": "SealNbrWms 8",
+	"SealNbrSite": "SealNbrSite 8",
+	"SealIntact": "SealIntact 8",
+	"CarrierCode": "CarrierCode 8",
+	"SealDecertify": "SealDecertify 8",
+	"Seal": "Seal 8",
+	"RefNumber": "RefNumber 8",
+	"__metadata": {
+		"uri": "DriverCheckInSet(WayBillNbr='WayBillNbr%208',StoreID='StoreID%208')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.DriverCheckIn"
+	}
+}, {
+	"WayBillNbr": "WayBillNbr 9",
+	"StoreID": "StoreID 9",
+	"ArrivalTimeStamp": "/Date(1154786893000)/",
+	"SealNbrWms": "SealNbrWms 9",
+	"SealNbrSite": "SealNbrSite 9",
+	"SealIntact": "SealIntact 9",
+	"CarrierCode": "CarrierCode 9",
+	"SealDecertify": "SealDecertify 9",
+	"Seal": "Seal 9",
+	"RefNumber": "RefNumber 9",
+	"__metadata": {
+		"uri": "DriverCheckInSet(WayBillNbr='WayBillNbr%209',StoreID='StoreID%209')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.DriverCheckIn"
+	}
+}, {
+	"WayBillNbr": "WayBillNbr 10",
+	"StoreID": "StoreID 10",
+	"ArrivalTimeStamp": "/Date(1009552093000)/",
+	"SealNbrWms": "SealNbrWms 10",
+	"SealNbrSite": "SealNbrSite 10",
+	"SealIntact": "SealIntact 10",
+	"CarrierCode": "CarrierCode 10",
+	"SealDecertify": "SealDecertify 10",
+	"Seal": "Seal 10",
+	"RefNumber": "RefNumber 10",
+	"__metadata": {
+		"uri": "DriverCheckInSet(WayBillNbr='WayBillNbr%2010',StoreID='StoreID%2010')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.DriverCheckIn"
+	}
+}]

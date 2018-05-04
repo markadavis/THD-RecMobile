@@ -1,0 +1,71 @@
+[{
+	"TypeCode": "TypeCode 1",
+	"TypeText": "TypeText 1",
+	"__metadata": {
+		"uri": "ExceptionTypeSet('TypeCode%201')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.ExceptionType"
+	}
+}, {
+	"TypeCode": "TypeCode 2",
+	"TypeText": "TypeText 2",
+	"__metadata": {
+		"uri": "ExceptionTypeSet('TypeCode%202')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.ExceptionType"
+	}
+}, {
+	"TypeCode": "TypeCode 3",
+	"TypeText": "TypeText 3",
+	"__metadata": {
+		"uri": "ExceptionTypeSet('TypeCode%203')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.ExceptionType"
+	}
+}, {
+	"TypeCode": "TypeCode 4",
+	"TypeText": "TypeText 4",
+	"__metadata": {
+		"uri": "ExceptionTypeSet('TypeCode%204')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.ExceptionType"
+	}
+}, {
+	"TypeCode": "TypeCode 5",
+	"TypeText": "TypeText 5",
+	"__metadata": {
+		"uri": "ExceptionTypeSet('TypeCode%205')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.ExceptionType"
+	}
+}, {
+	"TypeCode": "TypeCode 6",
+	"TypeText": "TypeText 6",
+	"__metadata": {
+		"uri": "ExceptionTypeSet('TypeCode%206')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.ExceptionType"
+	}
+}, {
+	"TypeCode": "TypeCode 7",
+	"TypeText": "TypeText 7",
+	"__metadata": {
+		"uri": "ExceptionTypeSet('TypeCode%207')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.ExceptionType"
+	}
+}, {
+	"TypeCode": "TypeCode 8",
+	"TypeText": "TypeText 8",
+	"__metadata": {
+		"uri": "ExceptionTypeSet('TypeCode%208')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.ExceptionType"
+	}
+}, {
+	"TypeCode": "TypeCode 9",
+	"TypeText": "TypeText 9",
+	"__metadata": {
+		"uri": "ExceptionTypeSet('TypeCode%209')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.ExceptionType"
+	}
+}, {
+	"TypeCode": "TypeCode 10",
+	"TypeText": "TypeText 10",
+	"__metadata": {
+		"uri": "ExceptionTypeSet('TypeCode%2010')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.ExceptionType"
+	}
+}]

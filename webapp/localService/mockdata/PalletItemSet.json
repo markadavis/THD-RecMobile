@@ -1,0 +1,121 @@
+[{
+	"PalletID": "PalletID 1",
+	"ItemID": "ItemID 1",
+	"StoreID": "StoreID 1",
+	"PONbr": "PONbr 1",
+	"Article": "Article 1",
+	"ArticleQty": 5992.11,
+	"Department": "Department 1",
+	"__metadata": {
+		"uri": "PalletItemSet(PalletID='PalletID%201',ItemID='ItemID%201')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.PalletItem"
+	}
+}, {
+	"PalletID": "PalletID 2",
+	"ItemID": "ItemID 2",
+	"StoreID": "StoreID 2",
+	"PONbr": "PONbr 2",
+	"Article": "Article 2",
+	"ArticleQty": 8273.01,
+	"Department": "Department 2",
+	"__metadata": {
+		"uri": "PalletItemSet(PalletID='PalletID%202',ItemID='ItemID%202')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.PalletItem"
+	}
+}, {
+	"PalletID": "PalletID 3",
+	"ItemID": "ItemID 3",
+	"StoreID": "StoreID 3",
+	"PONbr": "PONbr 3",
+	"Article": "Article 3",
+	"ArticleQty": 2811.35,
+	"Department": "Department 3",
+	"__metadata": {
+		"uri": "PalletItemSet(PalletID='PalletID%203',ItemID='ItemID%203')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.PalletItem"
+	}
+}, {
+	"PalletID": "PalletID 4",
+	"ItemID": "ItemID 4",
+	"StoreID": "StoreID 4",
+	"PONbr": "PONbr 4",
+	"Article": "Article 4",
+	"ArticleQty": 9389.84,
+	"Department": "Department 4",
+	"__metadata": {
+		"uri": "PalletItemSet(PalletID='PalletID%204',ItemID='ItemID%204')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.PalletItem"
+	}
+}, {
+	"PalletID": "PalletID 5",
+	"ItemID": "ItemID 5",
+	"StoreID": "StoreID 5",
+	"PONbr": "PONbr 5",
+	"Article": "Article 5",
+	"ArticleQty": 7795.19,
+	"Department": "Department 5",
+	"__metadata": {
+		"uri": "PalletItemSet(PalletID='PalletID%205',ItemID='ItemID%205')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.PalletItem"
+	}
+}, {
+	"PalletID": "PalletID 6",
+	"ItemID": "ItemID 6",
+	"StoreID": "StoreID 6",
+	"PONbr": "PONbr 6",
+	"Article": "Article 6",
+	"ArticleQty": 1464.23,
+	"Department": "Department 6",
+	"__metadata": {
+		"uri": "PalletItemSet(PalletID='PalletID%206',ItemID='ItemID%206')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.PalletItem"
+	}
+}, {
+	"PalletID": "PalletID 7",
+	"ItemID": "ItemID 7",
+	"StoreID": "StoreID 7",
+	"PONbr": "PONbr 7",
+	"Article": "Article 7",
+	"ArticleQty": 8806.99,
+	"Department": "Department 7",
+	"__metadata": {
+		"uri": "PalletItemSet(PalletID='PalletID%207',ItemID='ItemID%207')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.PalletItem"
+	}
+}, {
+	"PalletID": "PalletID 8",
+	"ItemID": "ItemID 8",
+	"StoreID": "StoreID 8",
+	"PONbr": "PONbr 8",
+	"Article": "Article 8",
+	"ArticleQty": 8159.25,
+	"Department": "Department 8",
+	"__metadata": {
+		"uri": "PalletItemSet(PalletID='PalletID%208',ItemID='ItemID%208')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.PalletItem"
+	}
+}, {
+	"PalletID": "PalletID 9",
+	"ItemID": "ItemID 9",
+	"StoreID": "StoreID 9",
+	"PONbr": "PONbr 9",
+	"Article": "Article 9",
+	"ArticleQty": 2203.97,
+	"Department": "Department 9",
+	"__metadata": {
+		"uri": "PalletItemSet(PalletID='PalletID%209',ItemID='ItemID%209')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.PalletItem"
+	}
+}, {
+	"PalletID": "PalletID 10",
+	"ItemID": "ItemID 10",
+	"StoreID": "StoreID 10",
+	"PONbr": "PONbr 10",
+	"Article": "Article 10",
+	"ArticleQty": 2745.43,
+	"Department": "Department 10",
+	"__metadata": {
+		"uri": "PalletItemSet(PalletID='PalletID%2010',ItemID='ItemID%2010')",
+		"type": "YDMM_RECEIVING_MSTR_SRV.PalletItem"
+	}
+}]
